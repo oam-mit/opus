@@ -1,0 +1,23 @@
+{%extends 'game/base.html'%}
+{%load static%}
+
+
+{%block other_css%}
+<link rel="stylesheet" href="{%static 'css/style.css'%}"/>
+{%endblock%}
+
+{%block title%}
+Page not found
+{%endblock%}
+
+
+{%block content%}
+<section class="hero-section spad">
+<h3 class="text-center">Sorry, this page is not available</h3>
+
+<h6 class="text-center">
+        The link you followed may be broken, or the page may have been removed. <a href="{%url 'game:index'%}">Go back to the game</a>
+</h6>
+
+</section>
+{%endblock%}

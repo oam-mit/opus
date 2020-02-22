@@ -1,0 +1,24 @@
+{%extends 'user/reset.html'%}
+{%block title%}
+Password Reset Complete
+{%endblock%}
+
+{%block content%}
+<div class="container">
+    <div class="row">
+        <div class="text-center alert-info">
+            <h4>Password has been reset</h4>
+
+        </div>
+
+    </div>
+    <div class="row">
+            <div class="text-center">
+                <a href="{%url 'user:login'%}">Log in</a>
+    
+            </div>
+    
+        </div>
+
+</div>
+{%endblock%}

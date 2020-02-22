@@ -1,0 +1,574 @@
+{%load static%}
+
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <title>{%block title%}Hopeless Opus{%endblock%}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  
+  
+  <link rel="stylesheet" href="{%static 'css/story.css'%}">
+  <link rel="icon" type="image/ico" href="{%static 'img/acumen2.png'%}" />
+
+    {%block other_css%}
+    {%endblock%}
+
+</head>
+
+<body>
+  <audio autoplay loop>
+    <source src="{%static 'sacred_games.mp3'%}" type="audio/mpeg">
+  </audio>
+<div class="nav navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#" id="index">HOPELESS OPUS</a>
+
+  {%if user.is_authenticated%}
+  <a class="navbar-brand" >SCORE: {{user.userprofile.points}}</a>
+  {%endif%}
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+<div class="collapse navbar-collapse" id="collapsibleNavbar" style="float:right;">
+      <ul class="nav navbar-nav ml-auto navbar-left">
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-target="#Modalrules" >RULES</a>
+      </li>
+      <li class="nav-item" id="leaderboard">
+        <a class="nav-link" data-toggle="modal" data-target="#Modalleaderboard" >LEADERBOARD</a>
+      </li>
+      
+      {% if user.is_authenticated %}
+      <li class="nav-item" id="profile">
+        <a class="nav-link" data-toggle="modal" data-target="#Modalprofile" >PROFILE</a>
+      </li>
+
+      </ul>
+     
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-toggle="modal" data-target="#Modallogout" >LOGOUT</a>
+        </li>
+      </ul>
+
+      {% else %}
+      <li class="nav-item" id="profile">
+        <a class="nav-link" href="{%url 'user:login'%}" >LOGIN</a>
+      </li>
+
+
+      {%endif%}
+    <ul class="nav navbar-nav navbar-right">
+      <a class="nav-link blink" data-toggle="modal" data-toggle="modal" data-target="#Modalevent" >OTHER EVENTS</a>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-toggle="modal" data-target="#Modalcontact" >CONTACT US</a>
+      </li>
+    </ul>
+</div>
+</div>
+<div id="Modalcontact" class="modal fade" role="dialog"  data-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h3 class="modal-title ml-auto">Contact</h3>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <br>
+          </div>
+          <div class="modal-body">
+            <center>
+                    <br />
+                    <br />
+                    <div class="table-responsive">
+                      <table class="table table-striped table-bordered table-condensed">
+                        <thead>
+                          <tr>
+                            <td>NAME</td>
+                            <td>CONTACT NUMBER</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>NARAYAN HARI </td>
+                            <td>+918384845571</td>
+                            </tr>
+                            <tr>
+                            <td>MUSKAAN</td>
+                            <td>+918707471726</td>
+                            </tr>
+                            <tr>
+                            <td>PRANAV JAIN</td>
+                            <td>+919920902469</td>
+                            </tr>
+                        </tbody>
+                      </table>
+                    </div>  
+                  </center>
+
+          </div>
+        </div>
+      </div>
+</div>    
+
+<div id="Modalevent" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+           
+              <h3 class="modal-title ml-auto">Other Events</h3>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            
+          </div>
+          <div class="modal-body">
+            <ul>
+            <li data-toggle="collapse" data-target="#day1">Day 1(October 9)</li><br>
+            <center id="day1" class="collapse">
+                    <div class="table-responsive">
+                      <table class="table table-striped table-bordered table-condensed">
+                        <thead>
+                          <tr>
+                            <td>EVENT NAME</td>
+                            <td>ROUND/TIMING</td>
+                            <td>LOCATION</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>AIB</td>
+                            <td>Round 1/ 1PM</td>
+                            <td>NHL 203</td>
+                            </tr>
+                            <tr>
+                            <td>MIQ</td>
+                            <td>Round 1/ 2:30PM</td>
+                            <td>NHL 203</td>
+                            </tr>
+                            <tr>
+                            <td>ATR</td>
+                            <td>Round 1/ 4PM</td>
+                            <td>NHL 203</td>
+                            </tr>
+                        </tbody>
+                      </table>
+                    </div>  
+                  </center>
+            <li data-toggle="collapse" data-target="#day2">Day 2(October 10)</li><br>
+            <center id="day2" class="collapse">
+                    <div class="table-responsive">
+                      <table class="table table-striped table-bordered table-condensed">
+                        <thead>
+                          <tr>
+                            <td>EVENT NAME</td>
+                            <td>ROUND/TIMING</td>
+                            <td>LOCATION</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>ATR</td>
+                            <td>Round 1/ 1PM</td>
+                            <td>NHL 203</td>
+                            </tr>
+                            <tr>
+                            <td>AIB</td>
+                            <td>Round 1/ 2:30PM</td>
+                            <td>NHL 203</td>
+                            </tr>
+                            <tr>
+                            <td>MIQ</td>
+                            <td>Round 1/ 4PM</td>
+                            <td>NHL 203</td>
+                            </tr>
+                        </tbody>
+                      </table>
+                    </div>  
+                  </center>
+            <li data-toggle="collapse" data-target="#day3">Day 3(October 11)</li><br>
+            <center id="day3" class="collapse">
+                    <div class="table-responsive">
+                      <table class="table table-striped table-bordered table-condensed">
+                        <thead>
+                          <tr>
+                            <td>EVENT NAME</td>
+                            <td>ROUND/TIMING</td>
+                            <td>LOCATION</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>AIB</td>
+                            <td>Round 2/ 1PM</td>
+                            <td>NHL 204</td>
+                            </tr>
+                            <tr>
+                            <td>ATR</td>
+                            <td>Round 1/ 3:30PM</td>
+                            <td>NHL 203</td>
+                            </tr>
+                            <tr>
+                            <td>MIQ</td>
+                            <td>Round 1/ 5PM</td>
+                            <td>NHL 203</td>
+                            </tr>
+                        </tbody>
+                      </table>
+                    </div>  
+                  </center>
+            <li data-toggle="collapse" data-target="#day4">Day 4(October 12)</li><br>
+            <center id="day4" class="collapse">
+                    <div class="table-responsive">
+                      <table class="table table-striped table-bordered table-condensed">
+                        <thead>
+                          <tr>
+                            <td>EVENT NAME</td>
+                            <td>ROUND/TIMING</td>
+                            <td>LOCATION</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>AIB</td>
+                            <td>Final/ 1PM</td>
+                            <td>NHL 205</td>
+                            </tr>
+                            <tr>
+                            <td>ATR</td>
+                            <td>Final/ 1PM</td>
+                            <td>NHL 305</td>
+                            </tr>
+                            <tr>
+                            <td>MIQ</td>
+                            <td>Final/ 1PM</td>
+                            <td>NHL 304</td>
+                            </tr>
+                        </tbody>
+                      </table>
+                    </div>  
+                  </center>
+            </ul>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+<div id="Modalrules" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+           
+              <h3 class="modal-title ml-auto">Rules</h3>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            
+          </div>
+          <div class="modal-body">
+            <ul>
+            <li>THIS IS CHOICE DRIVEN GAME</li><br>
+            <li>YOUR CHOICES DEFINE YOUR PATH WHICH DEFINE THE QUESTIONS</li><br>
+            <li>THE GAME CONSISTS OF 66 CHECKPOINTS SOME WITH 3 CHOICES WITH A DAILY CAP OF A CERTAIN QUESTION.</li>
+            <br>
+            <li>ON CHOOSING THE "BEST" ROUTE YOU WILL GET +7 POINTS</li>
+            <br>
+            <li>ON CHOOSING THE "LONG" ROUTE YOU WILL GET +5 POINTS</li>    
+            <br>
+            <li>ON CHOOSING THE "DEAD END" YOU WILL GET +3 POINTS</li>
+            <br>
+            <li><b>LETS SEE WHO SAVES MANIPAL FROM AN ABOUT TO DETONATE NUCLEAR BOMB</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+</div>
+<div id="Modallogout" class="modal fade" role="dialog" data-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h3 class="modal-title">Do you really want to leave this page?</h3>
+            <br />
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-footer">
+            <a href="{%url 'user:logout'%}"><button type="button" class="btn btn-default pull-left logy" >Yes</button></a>
+            <button type="button" class="btn btn-default pull-right logn" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      </div>
+</div>  
+<div id="Modalleaderboard" class="modal fade bd-example-modal-lg" role="dialog"  data-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h3 class="modal-title ml-auto">Leaderboard</h3>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <br>
+          </div>
+          <div class="modal-body">
+
+            <form id="searching_form">
+              {%csrf_token%}
+              <div class="form-group">
+                  <label for="reg">Search with Registration Number</label>
+                  <input type="text" class="form-control" id="reg" name="reg">
+              </div>
+              <button class="btn btn-primary" type="submit" id="btn_search">Submit</button>
+            </form>
+            
+            <div id="result_search" class="mt-1">
+           
+            </div>
+            
+            <center>
+                    <div class="table-responsive mt-2">
+                      <table class="table table-striped table-bordered table-condensed">
+                        <thead>
+                          <tr>
+                            <td>RANK</td>
+                            <td>USER ID</td>
+                            <td>SCORE</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {%for topper in toppers%}
+                          <tr>
+                          <td>{{forloop.counter}}</td>
+                          <td><a href="{%url 'profiles:index' topper.reg_number %}" target="_blank">{{topper.reg_number}}</a></td>
+                          <td>{{topper.points}}</td>
+                         </tr>
+                          {%endfor%}
+                        </tbody>
+                      </table>
+                    </div>  
+                  </center>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+<!-- Button trigger modal -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="Modalprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">{{user.first_name}} Profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="card" style="width: auto;">
+                <img src="{{user.userprofile.image.url}}" class="card-img-top rounded-circle" alt="XYZ">
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+                  <p class="card-text text-primary text-center">Points: {{user.userprofile.points}}</p>
+                  <center><a href="{%url 'game:profile'%}" class="btn btn-primary">Update Profile</a></center>
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+{%block content%}
+{%endblock%}
+
+</body>
+
+    <!-- particles.js container --> 
+
+<!-- particles.js lib - https://github.com/VincentGarreau/particles.js --> 
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+{%block body_color%}
+    <style>
+        body {
+  margin: 0;
+  background-color: #17182f;
+            overflow: hidden auto;
+}
+
+
+canvas {
+  display: block;
+  vertical-align: bottom;
+}
+
+
+/* ---- particles.js container ---- */
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+h1{
+ color:white;
+  text-align:center;
+}
+    #margin_given{
+    margin-left:40%;
+}
+@media screen and (max-width: 700px){
+    #margin_given{
+        margin-left:0%;}
+}
+.box{
+    border-radius: 10px 10px;
+    background: linear-gradient(to bottom right, #dedce8, #f9f9f9,#1111);
+    opacity: 0.2;
+    margin-bottom: 5%;
+     
+}
+        p{
+            opacity: 1 !important;
+            color:white;
+            padding:10px !important;
+        }
+        .spacer{
+            margin-top:70px;
+        }
+        .spacer2{
+            margin-top:100px;
+        }
+        @media screen and (max-width: 700px){
+            .spacer2{
+                margin-top:20px;
+            }
+        }
+    </style>
+    {%endblock%}
+    {%block background%}
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 555,
+                    "density": {
+                        "enable": true,
+                        "value_area": 789.1476416322727
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000fff"
+                    },
+                    "polygon": {
+                        "nb_sides": 10
+                    },
+                    "image": {
+                        "src": "img/github.svg",
+                        "width": 20,
+                        "height": 10
+                    }
+                },
+                "opacity": {
+                    "value": 0.48927153781200905,
+                    "random": false,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "opacity_min": 0,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 2,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 8,
+                        "size_min": 0,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": false,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1.2,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 900,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "bubble"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 83.91608391608392,
+                        "size": 5,
+                        "duration": 3,
+                        "opacity": 1,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+    {%endblock%}
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="{%static 'js/ajax_funs.js'%}"></script>
+{%block other_js%}
+{%endblock%}
+
+</html>

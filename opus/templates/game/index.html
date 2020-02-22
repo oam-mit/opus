@@ -1,0 +1,60 @@
+{%extends 'game/base.html'%}
+
+{%block title%}
+Hopeless Opus|Story
+{%endblock%}
+
+
+{%block content%}
+
+{%autoescape off%}
+<div id="story">
+    <div id="particles-js"></div>
+    <div class="container">
+        <div class="row container-fluid justify-content-center">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding">
+                    <div class="border spacer2">
+                        <p style="text-align:center; font-size: 20px; color: white;"><b> {{story.question}}</b></p>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div id="options" class="spacer">
+        <div class="container">
+            <div class="row row2">
+                {%if story.choice_1%}
+                    <div class="col-lg-{{number}} col-md-{{number}} col-sm-12 col-xs-12">
+                    <a href="{%url 'game:check_story' 1%}" style="z-index:1000; color:white; text-decoration:none;">
+                        <div class="border border-success  rounded">
+                            <p style="font-size: 18px;">{{story.choice_1}}</p>
+                        </div>
+                    </a>
+                    </div>
+                    {%endif%}
+                    
+                    {%if story.choice_2%}
+                    <div class="col-lg-{{number}} col-md-{{number}} col-sm-12 col-xs-12">
+                    <a href="{%url 'game:check_story' 2%}" style="z-index:1000; color:white; text-decoration:none;">
+                        <div class="border border-warning rounded">
+                            <p style="font-size: 18px;">{{story.choice_2}}</p>
+                        </div>
+                    </a>
+                    </div>
+                    {%endif%}
+                    
+                    {%if story.choice_3%}
+                    <div class="col-lg-{{number}} col-md-{{number}} col-sm-12 col-xs-12">
+                    <a href="{%url 'game:check_story' 3%}" style="z-index:1000; color:white; text-decoration:none;">
+                        <div class="border border-danger rounded">
+                              <p style="font-size: 18px;">{{story.choice_3}}
+                        </div>
+                    </a>
+                    </div>
+                    {%endif%}
+            </div>
+        </div>
+</div>
+{%endautoescape%}
+{%endblock%}

@@ -1,0 +1,27 @@
+{%extends 'user/reset.html'%}
+{%block title%}
+Email Sent
+{%endblock%}
+
+{%block content%}
+{%if messages%}
+<div class="row mt-1">
+    <ol>
+        {%for message in messages%}
+        <li>{{message}}</li>
+        {%endfor%}
+    </ol>
+
+</div>
+{%endif%}
+<div class="container">
+    <div class="row">
+        <div class="text-center alert-info">
+            <h4>Email has been sent. Check your inbox</h4>
+
+        </div>
+
+    </div>
+
+</div>
+{%endblock%}
