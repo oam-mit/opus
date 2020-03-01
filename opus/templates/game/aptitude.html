@@ -6,26 +6,9 @@ Hopeless Opus|Aptitude
 {%endblock%}
 
 {%block content%}
-{%if messages%}
-{%for message in messages%}
-<div class="container">
-<div class="ml-auto">
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true"data-autohide="false">
-    <div class="toast-header">
-      <strong class="mr-auto">Alert</strong>
-      <small></small>
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="toast-body">
-      {{message}}
-    </div>
-  </div>
+<div id="correct_wrong">
 </div>
-</div>
-  {%endfor%}
-{%endif%}
+
 <div id="particles-js"></div>
 <div id="story">
     
@@ -33,6 +16,7 @@ Hopeless Opus|Aptitude
         <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 md-offset-8">
                     <div class="border" id="changer">
+                            <div id="checking" style="opacity:1; color: white; padding:10px; text-align:center;"></div>
                            <h3 style="opacity:1; color: white; padding:10px; text-align:center;" >
                                {{question.question}}
                            </h3>
@@ -43,7 +27,7 @@ Hopeless Opus|Aptitude
 </div>
 
 
-<form method="POST">
+<form method="POST" id="aptitude_form">
     {%csrf_token%}
         <div id="mcq" class="container justify-content-center">
             <div class="container row justify-content-center">
@@ -74,5 +58,51 @@ Hopeless Opus|Aptitude
      // }, 5000);
   //});
   </script>
+
+<script>
+   
+        $("#aptitude_form").submit(function(e){
+
+            e.preventDefault();
+            var csrf=document.getElementsByName('csrfmiddlewaretoken')[0].value;
+            var answer=document.getElementById("id_answer").value;
+
+            $.ajax({
+                type:"POST",
+                url:"{%url 'game:check_aptitude'%}",
+                headers: { "X-CSRFToken": csrf },
+                data:{
+                    'ans':answer
+        
+                  },
+
+                  beforeSend:function(){
+                    $("#checking").append('Checking...');
+        
+                  },
+
+                  success:function(response){
+                    if(response!="correct"){
+                      document.getElementById("correct_wrong").innerHTML=" ";
+                      document.getElementById("checking").innerHTML=" ";
+                      $('#correct_wrong').append(response);
+                    
+                    }
+
+                    else if (response=="correct"){
+                        alert("Correct Answer");
+
+                        document.location.reload();
+                    }
+
+        
+                  },
+            });
+
+
+        });
+ 
+</script>
+  
 
 {%endblock%}

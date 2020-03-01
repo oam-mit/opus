@@ -115,26 +115,6 @@ def check_story(request,option):
 @login_required
 def aptitude(request):
     from . forms import AptitudeForm
-    if request.method=='POST':
-        form=AptitudeForm(request.POST)
-        ip=form['answer'].value().lower().replace(" ","")
-        answer=Story_Question.objects.get(question_number=request.user.userprofile.story).aptitude_question_set.get(question_number=request.user.userprofile.current_aptitude).answer.lower().replace(" ","")
-        if ip == answer:
-            request.user.userprofile.current_aptitude+=1
-        else:
-            mess.error(request,"Wrong Answer",extra_tags="danger")
-        if request.user.userprofile.current_aptitude>request.user.userprofile.path:
-            request.user.userprofile.is_story=True
-            if request.user.userprofile.path==1:
-                request.user.userprofile.story=Story_Question.objects.get(question_number=request.user.userprofile.story).on_good
-            elif request.user.userprofile.path==2:
-                request.user.userprofile.story=Story_Question.objects.get(question_number=request.user.userprofile.story).on_medium
-            else:
-                request.user.userprofile.story=Story_Question.objects.get(question_number=request.user.userprofile.story).on_bad
-            request.user.userprofile.current_aptitude=1
-            request.user.userprofile.points+=request.user.userprofile.path+3*(3-request.user.userprofile.path)
-        request.user.userprofile.save()
-        return HttpResponseRedirect(reverse('game:index'))
     
     if request.user.userprofile.is_story is True:
         return HttpResponseRedirect(reverse('game:index'))
@@ -164,6 +144,30 @@ def aptitude(request):
 
     }
     return render(request,template_name='game/aptitude.html',context=context)
+
+
+def check_aptitude(request):
+    from .forms import AptitudeForm
+    if request.method=='POST':
+        ip=request.POST.get('ans').lower().replace(" ","")
+        answer=Story_Question.objects.get(question_number=request.user.userprofile.story).aptitude_question_set.get(question_number=request.user.userprofile.current_aptitude).answer.lower().replace(" ","")
+        if ip == answer:
+            request.user.userprofile.current_aptitude+=1
+        else:
+            return render(request,template_name='game/wrong_answer.html')
+        if request.user.userprofile.current_aptitude>request.user.userprofile.path:
+            request.user.userprofile.is_story=True
+            if request.user.userprofile.path==1:
+                request.user.userprofile.story=Story_Question.objects.get(question_number=request.user.userprofile.story).on_good
+            elif request.user.userprofile.path==2:
+                request.user.userprofile.story=Story_Question.objects.get(question_number=request.user.userprofile.story).on_medium
+            else:
+                request.user.userprofile.story=Story_Question.objects.get(question_number=request.user.userprofile.story).on_bad
+            request.user.userprofile.current_aptitude=1
+            request.user.userprofile.points+=request.user.userprofile.path+3*(3-request.user.userprofile.path)
+        request.user.userprofile.save()
+        return HttpResponse("correct")
+
 
 
 @login_required
