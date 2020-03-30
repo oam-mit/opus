@@ -35,9 +35,6 @@ def signup(request):
     return render(request,template_name="user/signup.html",context=context)
 
 
-def bot(request):
-    return render(request,template_name="game/bot.html")
-
 def bot_reply(request):
     import os
     from opus import settings

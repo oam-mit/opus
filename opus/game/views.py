@@ -1,8 +1,8 @@
-from django.shortcuts import render,reverse
+from django.shortcuts import render,reverse,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Story_Question
-from django.http import HttpResponseRedirect,HttpResponse
+from django.http import HttpResponseRedirect,HttpResponse,HttpResponsePermanentRedirect
 from user.models import UserProfile
 
 from django.utils import timezone
@@ -24,17 +24,18 @@ def check_staff(request):
 @login_required
 def index(request):
     if request.user.userprofile.is_story is False:
-        return HttpResponseRedirect(reverse('game:aptitude'))
-    number=0
-    now=timezone.now().date().day
+        return redirect(reverse("game:aptitude"),permanent=True)
+ 
     # if now == 14 and request.user.userprofile.story == 20:
     #     return HttpResponseRedirect(reverse('game:day_ending',args=[1]))
     # elif now==15 and request.user.userprofile.story==40:
     #     return HttpResponseRedirect(reverse('game:day_ending',args=[2]))
     # elif now==16 and request.user.userprofile.story==60:
     #     return HttpResponseRedirect(reverse('game:day_ending',args=[3]))
-
-    if request.user.userprofile.is_story is True:
+    
+    else:
+        number=0
+        now=timezone.now().date().day
         try:
             story=Story_Question.objects.get(question_number=request.user.userprofile.story)
         except:
@@ -59,15 +60,14 @@ def index(request):
         }
         return render(request,template_name='game/index.html',context=context)
     
-    else:
-        return HttpResponseRedirect(reverse('game:aptitude'))
+   
 
 
 
 @login_required
 def check_story(request,option):
     if request.user.userprofile.is_story is False:
-        return HttpResponseRedirect(reverse('game:aptitude'))
+        return HttpResponseRedirect(reverse("game:aptitude"))
     question=Story_Question.objects.get(question_number=request.user.userprofile.story)
 
     #Increasing the story number
@@ -117,7 +117,7 @@ def aptitude(request):
     from . forms import AptitudeForm
     
     if request.user.userprofile.is_story is True:
-        return HttpResponseRedirect(reverse('game:index'))
+        return HttpResponseRedirect(reverse("game:index"))
 
     try:
         q=Story_Question.objects.get(question_number=request.user.userprofile.story).aptitude_question_set.get(question_number=request.user.userprofile.current_aptitude)
@@ -154,7 +154,7 @@ def check_aptitude(request):
         if ip == answer:
             request.user.userprofile.current_aptitude+=1
         else:
-            return render(request,template_name='game/wrong_answer.html')
+            return HttpResponse("wrong")
         if request.user.userprofile.current_aptitude>request.user.userprofile.path:
             request.user.userprofile.is_story=True
             if request.user.userprofile.path==1:
@@ -167,12 +167,15 @@ def check_aptitude(request):
             request.user.userprofile.points+=request.user.userprofile.path+3*(3-request.user.userprofile.path)
         request.user.userprofile.save()
         return HttpResponse("correct")
+    
+    else:
+        return HttpResponse("Not Allowed")
 
 
 
 @login_required
 def day_ending(request,day):
-    date=datetime.datetime.now()
+    #date=datetime.datetime.now()
     # if not (date.day == 14 and request.user.userprofile.story == 20) and not (date.day==15 and request.user.userprofile.story==40) and not (date.day==16 and request.user.userprofile.story==60):
     #     return HttpResponseRedirect(reverse('game:index'))
     table = UserProfile.objects.order_by('-points').exclude(user=User.objects.get(username='omkar').pk)

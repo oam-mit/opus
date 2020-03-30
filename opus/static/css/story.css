@@ -20,3 +20,70 @@ a.nav-link{
 		opacity: 0;
 	}
 }
+
+
+.chatting{
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	margin-right: 17px;
+	background-color: #dedce8;
+	border-radius: 9px;
+	margin-bottom: 30px;
+  }
+  
+  @media only screen and (min-width: 1440px) {
+
+	.chatting i{
+	  font-size:100px;
+	}
+	
+  }
+  @media only screen and (max-width: 1440px) {
+
+	.chatting i{
+	  font-size:50px;
+	}
+	
+  }
+
+  .chat-output {
+	flex: 1;
+	padding: 20px;
+	display: flex;
+	background: white;
+	flex-direction: column;
+ }
+  .chat-output > div {
+	margin: 0 0 20px 0;
+ }
+  .chat-output .user-message .message {
+	background: #0fb0df;
+	color: white;
+ }
+  .chat-output .bot-message {
+	text-align: right;
+ }
+  .chat-output .bot-message .message {
+	background: #eee;
+ }
+  .chat-output .message {
+	display: inline-block;
+	padding: 12px 20px;
+	border-radius: 10px;
+ }
+  .chat-input {
+	padding: 20px;
+	background: #eee;
+	border: 1px solid #ccc;
+	border-bottom: 0;
+ }
+  .chat-input .user-input {
+	width: 100%;
+	font-size: auto;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 8px;
+	height: auto;
+ }
+  
