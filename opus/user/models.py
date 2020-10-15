@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 
 from PIL import Image
 
+from .managers import UserProfileManager
+
 # Create your models here.
 class UserProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
@@ -15,6 +17,8 @@ class UserProfile(models.Model):
     path=models.IntegerField(default=1)
     current_aptitude=models.IntegerField(default=1)
     is_ended=models.BooleanField(default=False)
+
+    objects=UserProfileManager()
 
     def __str__(self):
         return self.user.first_name +" " +self.user.last_name+"--->"+str(self.reg_number)

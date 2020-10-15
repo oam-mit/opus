@@ -327,10 +327,10 @@
             <form id="searching_form">
               {%csrf_token%}
               <div class="form-group">
-                  <label for="reg">Search with Registration Number</label>
+                  <label for="reg">Search with Registration Number / Name</label>
                   <input type="text" class="form-control" id="reg" name="reg">
               </div>
-              <button class="btn btn-primary" type="submit" id="btn_search">Submit</button>
+              <button class="btn btn-primary" type="submit" id="btn_search"><span id="form_spinner" class="d-none spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span><span id="form_status_text">Submit</span></button>
             </form>
             
             <div id="result_search" class="mt-1">
@@ -379,7 +379,7 @@
         </div>
         <div class="modal-body">
             <div class="card" style="width: auto;">
-                <img src="{{user.userprofile.image.url}}" class="card-img-top rounded-circle" alt="XYZ">
+                <img src="{%if user.userprofile.image.url == '/media/default.jpg'%}https://ui-avatars.com/api/?name={{user.first_name}} {{user.last_name}}{%else%}{{user.userprofile.image.url}}{%endif%}" class="card-img-top rounded-circle" alt="XYZ">
                 <div class="card-body">
                   <h5 class="card-title"></h5>
                   <p class="card-text text-primary text-center">Points: {{user.userprofile.points}}</p>

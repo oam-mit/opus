@@ -79,7 +79,7 @@
         <div class="row">
           <div class="col-12" style="margin-top: -7%;">
             <div class="slide-one-item home-slider owl-carousel">
-              <img src="{{profile.image.url}}" alt="Profile Picture" class="img-fluid img">
+              <img src="{%if user.userprofile.image.url == '/media/default.jpg'%}https://ui-avatars.com/api/?name={{user.first_name}} {{user.last_name}}{%else%}{{user.userprofile.image.url}}{%endif%}" alt="Profile Picture" class="img-fluid img">
             </div>
           </div>
         </div>

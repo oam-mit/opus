@@ -11,7 +11,10 @@ from user.forms import ProfileUpdateForm,UserUpdateForm
 
 from django.contrib import messages as mess
 
-def check_staff(request):
+
+from django.db.models import Count,Q
+
+def check_staff(request): #Only non-staff members are allowed to play
     if request.user.is_staff:
         from django.contrib.auth import logout
         logout(request)
@@ -23,7 +26,7 @@ def check_staff(request):
 # Create your views here.
 @login_required
 def index(request):
-    if request.user.userprofile.is_story is False:
+    if request.user.userprofile.is_story is False: #Player is on an aptitude question
         return redirect(reverse("game:aptitude"),permanent=True)
  
     # if now == 14 and request.user.userprofile.story == 20:
@@ -33,17 +36,17 @@ def index(request):
     # elif now==16 and request.user.userprofile.story==60:
     #     return HttpResponseRedirect(reverse('game:day_ending',args=[3]))
     
-    else:
+    else: #Player is on story question
         number=0
         now=timezone.now().date().day
         try:
-            story=Story_Question.objects.get(question_number=request.user.userprofile.story)
-        except:
-            request.user.userprofile.is_ended=True
+            story=Story_Question.objects.get(question_number=request.user.userprofile.story) #Get the story question player is on
+        except: #No such story question exists, which means he has completed the game
+            request.user.userprofile.is_ended=True #Set flag to false 
             request.user.userprofile.save()
-            return HttpResponseRedirect(reverse('game:game_end'))
+            return HttpResponseRedirect(reverse('game:game_end')) #Redirect to game end
 
-        table = UserProfile.objects.order_by('-points').exclude(user=User.objects.get(username='omkar').pk)[:5]
+        table = UserProfile.objects.getLeaderboard()
     
         if story.choice_1 is not None:
             number+=1
@@ -58,6 +61,7 @@ def index(request):
             'story':story,
             'number':number,
         }
+       
         return render(request,template_name='game/index.html',context=context)
     
    
@@ -66,14 +70,14 @@ def index(request):
 
 @login_required
 def check_story(request,option):
-    if request.user.userprofile.is_story is False:
-        return HttpResponseRedirect(reverse("game:aptitude"))
+    if request.user.userprofile.is_story is False: #User is not on story question
+        return HttpResponseRedirect(reverse("game:aptitude")) #Redirect to aptitude
     question=Story_Question.objects.get(question_number=request.user.userprofile.story)
 
     #Increasing the story number
     #request.user.userprofile.story=request.user.userprofile.story+1
 
-    if option >3 or option <0:
+    if option >3 or option <0: #Bad response
         return HttpResponse("Bad Response")
 
     if option==1:
@@ -116,16 +120,16 @@ def check_story(request,option):
 def aptitude(request):
     from . forms import AptitudeForm
     
-    if request.user.userprofile.is_story is True:
+    if request.user.userprofile.is_story is True: #User is on story question
         return HttpResponseRedirect(reverse("game:index"))
 
     try:
-        q=Story_Question.objects.get(question_number=request.user.userprofile.story).aptitude_question_set.get(question_number=request.user.userprofile.current_aptitude)
-    except:
-        request.user.userprofile.is_story=True
-        if request.user.userprofile.path==1:
+        q=Story_Question.objects.get(question_number=request.user.userprofile.story).aptitude_question_set.get(question_number=request.user.userprofile.current_aptitude) #Get the current aptitude question from the story question he is on
+    except: #No aptitude question exists
+        request.user.userprofile.is_story=True #Set story flag to true
+        if request.user.userprofile.path==1: #Good
             request.user.userprofile.story=Story_Question.objects.get(question_number=request.user.userprofile.story).on_good
-        elif request.user.userprofile.path==2:
+        elif request.user.userprofile.path==2: #Medium
             request.user.userprofile.story=Story_Question.objects.get(question_number=request.user.userprofile.story).on_medium
         else:
             request.user.userprofile.story=Story_Question.objects.get(question_number=request.user.userprofile.story).on_bad
@@ -135,7 +139,7 @@ def aptitude(request):
         return HttpResponseRedirect(reverse('game:index'))
 
     form=AptitudeForm()
-    table = UserProfile.objects.order_by('-points').exclude(user=User.objects.get(username='omkar').pk)[:5]
+    table = UserProfile.objects.getLeaderboard()
     
     context={
         'form':form,
@@ -151,11 +155,11 @@ def check_aptitude(request):
     if request.method=='POST':
         ip=request.POST.get('ans').lower().replace(" ","")
         answer=Story_Question.objects.get(question_number=request.user.userprofile.story).aptitude_question_set.get(question_number=request.user.userprofile.current_aptitude).answer.lower().replace(" ","")
-        if ip == answer:
+        if ip == answer: #Corect answer
             request.user.userprofile.current_aptitude+=1
         else:
             return HttpResponse("wrong")
-        if request.user.userprofile.current_aptitude>request.user.userprofile.path:
+        if request.user.userprofile.current_aptitude>request.user.userprofile.path: #User has answered all aptitude questions expected
             request.user.userprofile.is_story=True
             if request.user.userprofile.path==1:
                 request.user.userprofile.story=Story_Question.objects.get(question_number=request.user.userprofile.story).on_good
@@ -178,7 +182,7 @@ def day_ending(request,day):
     #date=datetime.datetime.now()
     # if not (date.day == 14 and request.user.userprofile.story == 20) and not (date.day==15 and request.user.userprofile.story==40) and not (date.day==16 and request.user.userprofile.story==60):
     #     return HttpResponseRedirect(reverse('game:index'))
-    table = UserProfile.objects.order_by('-points').exclude(user=User.objects.get(username='omkar').pk)
+    table = UserProfile.objects.getLeaderboard()
     context={
         'toppers':table,
         'day':day,
@@ -189,12 +193,13 @@ def day_ending(request,day):
 
 @login_required
 def profile(request):
-    obj=UserProfile.objects.order_by('-points')
-    rank=1
-    for i in obj :
-        if i.reg_number==request.user.userprofile.reg_number:
-            break
-        rank+=1
+    #print(request.user.userprofile.points)
+    obj=UserProfile.objects.filter(points__gte=request.user.userprofile.points).order_by('-points','pk').annotate(rank=Count('pk',filter=Q(pk__lt=request.user.userprofile.pk)))
+    # rank=1
+    # for i in obj :
+    #     if i.reg_number==request.user.userprofile.reg_number:
+    #         break
+    #     rank+=1
     if request.method=='POST':
       profile_form=ProfileUpdateForm(request.POST,request.FILES,instance=request.user.userprofile)
       user_form=UserUpdateForm(request.POST,instance=request.user)
@@ -208,7 +213,7 @@ def profile(request):
         user_form=UserUpdateForm(instance=request.user)
    
     context={
-        'rank':rank,
+        'rank':obj[0].rank+1,
         'user_form':user_form,
         'profile_form':profile_form,
     }
@@ -219,7 +224,7 @@ def profile(request):
 def game_end(request):
     if request.user.userprofile.is_ended==False:
         return HttpResponseRedirect(reverse('game:index'))
-    table = UserProfile.objects.order_by('-points').exclude(user=User.objects.get(username='omkar').pk)
+    table = UserProfile.objects.getLeaderboard()
     context={
         'toppers':table,
     }

@@ -17,14 +17,18 @@
           },
 
           beforeSend:function(){
-            $("#result_search").append('Processing...');
+            document.getElementById("form_spinner").classList.remove("d-none");
+            document.getElementById("form_status_text").innerHTML="Processing";
 
           },
 
           success:function(response){
             if(response!="No Data Found"){
-              document.getElementById("result_search").innerHTML=" ";
-              $('#result_search').append(response);
+            document.getElementById("result_search").innerHTML=" ";
+             $('#result_search').append(response);
+             document.getElementById("form_spinner").classList.add("d-none");
+             document.getElementById("form_status_text").innerHTML="Submit";
+              
             
             }
 

@@ -2,7 +2,7 @@
 <table class="table table-striped table-bordered table-condensed">
     <tbody>
         <tr>
-        <td><a href="{%url 'profiles:index' profile.reg_number %}" target="_blank">{{profile.reg_number}}</a></td>
+        <td><a href="{%url 'profiles:index' profile.reg_number %}" target="_blank">{{profile.user.first_name}} {{profile.user.last_name}} {{profile.reg_number}}</a></td>
         <td>{{profile.points}}</td>
        </tr>
     </tbody>
@@ -18,6 +18,15 @@
 </table>
 
 {%else%}
-<h3>No data Found</h3>
+{%for profile in profiles%}
+<table class="table table-striped table-bordered table-condensed">
+    <tbody>
+        <tr>
+        <td><a href="{%url 'profiles:index' profile.reg_number %}" target="_blank">{{profile.user.first_name}} {{profile.user.last_name}} ({{profile.reg_number}})</a></td>
+        <td>{{profile.points}}</td>
+       </tr>
+    </tbody>
+</table>
+{%endfor%}
 
 {%endif%}

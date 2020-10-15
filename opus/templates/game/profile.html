@@ -23,7 +23,7 @@ Profile|{{user.username}}
                 <div class="card mb-3 offset-md-3" style="max-width: 540px; height:auto;">
                         <div class="row no-gutters">
                           <div class="col-md-4">
-                            {%if user.userprofile.image%}<img src="{{user.userprofile.image.url}}" class="card-img rounded-circle" alt="{{user.username}}" width="200px" height="200px" style="margin: 10px auto 20px;display: block;">{%endif%}
+                            {%if user.userprofile.image%}<img src="{%if user.userprofile.image.url == '/media/default.jpg'%}https://ui-avatars.com/api/?name={{user.first_name}} {{user.last_name}}{%else%}{{user.userprofile.image.url}}{%endif%}" class="card-img rounded-circle" alt="{{user.username}}" width="200px" height="200px" style="margin: 10px auto 20px;display: block;">{%endif%}
                           </div>
                           <div class="col-md-8">
                             <div class="card-body">

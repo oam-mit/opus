@@ -39,6 +39,9 @@ urlpatterns = [
     #Game
     path("game/",include("game.urls")),
 
+    #api
+    path('api/',include("api.urls")),
+
     #Password-ResetS
     path("password-reset/confirm/<uidb64>/<token>/",user_views.PasswordResetConfirmView.as_view(template_name="user/reset_confirm.html"),name="password_reset_confirm"),
     path("password-reset/sent/",user_views.PasswordResetDoneView.as_view(template_name="user/reset_sent.html"),name="password_reset_done"),
