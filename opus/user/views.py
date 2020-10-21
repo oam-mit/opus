@@ -6,23 +6,28 @@ from django.contrib import messages
 from .models import UserProfile
 from django.contrib.auth.models import User
 
+from django.db import transaction
 
 # Create your views here.
 def index(request):
     return render(request,template_name="user/index.html")
 
+@transaction.atomic
 def signup(request):
     if request.method=="POST":
         u_form=UserForm(request.POST)
         p_form=ProfileForm(request.POST)
         if u_form.is_valid() and p_form.is_valid() and u_form.unique_name():
-            u_form.save()
-            p=UserProfile(user=User.objects.get(username=u_form.cleaned_data['username']),reg_number=p_form.cleaned_data['reg_number'])
-            if p_form.cleaned_data['mob_number']:
-                p.mob_number=p_form.cleaned_data['mob_number']
-            p.save()
-            messages.success(request,"Account Created Successfully")
-            return HttpResponseRedirect(reverse('user:login'))
+            try:
+                user=u_form.save()
+                p=UserProfile(user=user,reg_number=p_form.cleaned_data['reg_number'])
+                if p_form.cleaned_data['mob_number']:
+                    p.mob_number=p_form.cleaned_data['mob_number']
+                p.save()
+                messages.success(request,"Account Created Successfully")
+                return HttpResponseRedirect(reverse('user:login'))
+            except:
+                transaction.set_rollback(True)
         else:
             messages.error(request,"You may have already Registered")
     else:

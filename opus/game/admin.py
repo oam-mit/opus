@@ -3,7 +3,7 @@ from . import models
 # Register your models here.
 
 class AnswerAdd(admin.StackedInline):
-    model=models.Story_Answer
+    model=models.Story_Options
 
 
 class AptitudeAdd(admin.StackedInline):
@@ -12,7 +12,7 @@ class AptitudeAdd(admin.StackedInline):
 
 class GameAdmin(admin.ModelAdmin):
     inlines=[AnswerAdd,AptitudeAdd]
-    list_display=['question_number','question','on_good','on_medium','on_bad']
+    list_display=['question_number','question']
     list_display_links=['question_number']
     list_filter=['question_number']
     search_fields=['question_number']
@@ -22,6 +22,6 @@ class GameAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Story_Question,GameAdmin)
-admin.site.register(models.Story_Answer)
+admin.site.register(models.Story_Options)
 admin.site.register(models.Aptitude_Question)
 admin.site.register(models.Levels)

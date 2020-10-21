@@ -36,7 +36,7 @@
   <audio autoplay loop>
     <source src="{%static 'sacred_games.mp3'%}" type="audio/mpeg">
   </audio>
-<div class="nav navbar navbar-expand-md bg-dark navbar-dark">
+<div class="nav navbar navbar-expand-md bg-dark navbar-dark sticky-top">
   <!-- Brand -->
   <a class="navbar-brand" href="#" id="index">HOPELESS OPUS</a>
 
@@ -50,7 +50,7 @@
   </button>
 
   <!-- Navbar links -->
-<div class="collapse navbar-collapse" id="collapsibleNavbar" style="float:right;">
+<div class="collapse navbar-collapse " id="collapsibleNavbar" style="float:right;">
       <ul class="nav navbar-nav ml-auto navbar-left">
       <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#Modalrules" >RULES</a>
@@ -109,17 +109,14 @@
                         </thead>
                         <tbody>
                             <tr>
-                            <td>NARAYAN HARI </td>
-                            <td>+918384845571</td>
+                            <td>Omkar Masur</td>
+                            <td>+919930147279</td>
                             </tr>
                             <tr>
-                            <td>MUSKAAN</td>
-                            <td>+918707471726</td>
+                            <td>Anmol Malhotra</td>
+                            <td>+91</td>
                             </tr>
-                            <tr>
-                            <td>PRANAV JAIN</td>
-                            <td>+919920902469</td>
-                            </tr>
+                           
                         </tbody>
                       </table>
                     </div>  
@@ -328,7 +325,7 @@
               {%csrf_token%}
               <div class="form-group">
                   <label for="reg">Search with Registration Number / Name</label>
-                  <input type="text" class="form-control" id="reg" name="reg">
+                  <input autocomplete="off" type="text" class="form-control" id="reg" name="reg">
               </div>
               <button class="btn btn-primary" type="submit" id="btn_search"><span id="form_spinner" class="d-none spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span><span id="form_status_text">Submit</span></button>
             </form>
@@ -474,6 +471,11 @@
   width: 100%;
   height: 100%;
   z-index: -1000;
+  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url("/static/img/wand.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
 }
 h1{
  color:white;

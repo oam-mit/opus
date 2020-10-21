@@ -44,22 +44,19 @@ def index(request,reg_number):
 
 
 def search(request):
-    try:
-        profile=UserProfile.objects.get(reg_number=request.POST.get('reg'))
-        return render(request,template_name="viewing/search.html",context={'profile':profile})
-    except:
-        pass
-    try:
-        queries=request.POST.get('reg').split()
-        profiles=[]
-        for query in queries:
-            profile=UserProfile.objects.filter(Q(user__first_name__contains=query)|Q(user__last_name__contains=query)).distinct()
-            for p in profile:
-                profiles.append(p)
+   
+    queries=request.POST.get('reg').split()
+ 
+    profiles=[]
+    for query in queries:
+        profile=UserProfile.objects.filter(Q(user__first_name__icontains=query)|Q(user__last_name__icontains=query)).distinct()
+            
+        for p in profile:
+            profiles.append(p)
         profiles=list(set(profiles))
+    
         return render(request,template_name="viewing/search.html",context={'profiles':profiles})
-    except:
-        return render(request,template_name="viewing/search.html",context={'profile':"No Records"})
+    
 
 
     

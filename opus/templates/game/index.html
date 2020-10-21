@@ -24,35 +24,20 @@ Hopeless Opus|Story
 <div id="options" class="spacer">
         <div class="container">
             <div class="row row2">
-                {%if story.choice_1%}
+               
+                {%for option in story.story_options_set.all%}
                     <div class="col-lg-{{number}} col-md-{{number}} col-sm-12 col-xs-12">
-                    <a href="{%url 'game:check_story' 1%}" style="z-index:1000; color:white; text-decoration:none;">
+                    <a href="{%url 'game:check_story' forloop.counter%}" style="z-index:1000; color:white; text-decoration:none;">
                         <div class="border border-success  rounded">
-                            <p style="font-size: 18px;">{{story.choice_1}}</p>
+                            <p style="font-size: 18px;">{{option.option}}</p>
                         </div>
                     </a>
                     </div>
-                    {%endif%}
+                    {%endfor%}
+              
                     
-                    {%if story.choice_2%}
-                    <div class="col-lg-{{number}} col-md-{{number}} col-sm-12 col-xs-12">
-                    <a href="{%url 'game:check_story' 2%}" style="z-index:1000; color:white; text-decoration:none;">
-                        <div class="border border-warning rounded">
-                            <p style="font-size: 18px;">{{story.choice_2}}</p>
-                        </div>
-                    </a>
-                    </div>
-                    {%endif%}
                     
-                    {%if story.choice_3%}
-                    <div class="col-lg-{{number}} col-md-{{number}} col-sm-12 col-xs-12">
-                    <a href="{%url 'game:check_story' 3%}" style="z-index:1000; color:white; text-decoration:none;">
-                        <div class="border border-danger rounded">
-                              <p style="font-size: 18px;">{{story.choice_3}}
-                        </div>
-                    </a>
-                    </div>
-                    {%endif%}
+                   
             </div>
         </div>
 </div>

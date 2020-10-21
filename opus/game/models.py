@@ -17,32 +17,16 @@ class Levels(models.Model):
 
 class Story_Question(models.Model):
     question_number=models.IntegerField(blank=False,unique=True)
-    question=models.TextField(max_length=65000)
-    # choice_1=models.CharField(max_length=1000,null=True,blank=True)
-    # choice_2=models.CharField(max_length=1000,null=True,blank=True)
-    # choice_3=models.CharField(max_length=1000,null=True,blank=True)
-    # on_good=models.IntegerField(blank=False,default=1001)
-    # on_medium=models.IntegerField(blank=False,default=1002)
-    # on_bad=models.IntegerField(blank=False,default=1003)
+    question=models.TextField(max_length=10000)
 
     def __str__(self):
         return self.question
 
 
-# class Story_Answer(models.Model):
-#     question=models.OneToOneField(Story_Question,on_delete=models.CASCADE)
-#     choice_1=models.ForeignKey(to=Levels,on_delete=models.CASCADE,related_name='option_1',null=True,blank=True)
-#     choice_2=models.ForeignKey(to=Levels,on_delete=models.CASCADE,related_name='option_2',null=True,blank=True)
-#     choice_3=models.ForeignKey(to=Levels,on_delete=models.CASCADE,related_name='option_3',null=True,blank=True)
-   
-#     def __str__(self):
-#         return (self.question.question)
-
-
 class Story_Options(models.Model):
-    question=models.ForeignKey(to=Story_Question)
+    question=models.ForeignKey(to=Story_Question,on_delete=models.CASCADE)
     level=models.ForeignKey(to=Levels,on_delete=models.CASCADE)
-    option=models.CharField(max_length=65000)
+    option=models.TextField(max_length=10000)
     on_chosen=models.IntegerField()
 
     def __str__(self):
@@ -50,6 +34,7 @@ class Story_Options(models.Model):
     
     class Meta:
         unique_together=[['question','level']]
+        ordering=['pk']
 
 
 

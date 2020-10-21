@@ -8,7 +8,7 @@ from .managers import UserProfileManager
 # Create your models here.
 class UserProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    reg_number=models.IntegerField(unique=True,error_messages={'unique':'Registration number already Exists'})
+    reg_number=models.CharField(unique=True,error_messages={'unique':'Registration number already Exists'},max_length=15)
     mob_number=models.CharField(max_length=15,null=True)
     image=models.ImageField(upload_to='DPs',default='default.jpg')
     story=models.IntegerField(default=1)

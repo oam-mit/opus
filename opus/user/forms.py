@@ -44,7 +44,7 @@ class UserForm(UserCreationForm):
         return user
 
 class ProfileForm(forms.ModelForm):
-    reg_number=forms.IntegerField(widget=forms.NumberInput(attrs={'class':'col-12'}),label="Registration Number",
+    reg_number=forms.CharField(widget=forms.NumberInput(attrs={'class':'col-12'}),label="Registration Number <br>(Non-MAHE students should enter phone number)",
         error_messages={'unique':'Registration number already Exists'})
     mob_number=forms.CharField(widget=forms.TextInput(attrs={'class':'col-12'}),label="Mobile Number",min_length=10,max_length=15,required=False)
     class Meta:
