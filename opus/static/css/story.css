@@ -1,13 +1,13 @@
 .nav{
-    background-color: #111;
-    margin-bottom: 0px;
+	margin-bottom: 0px;
+	padding: 0.7%;
 }
 
 .rounded{
 	margin: 10px !important;
 }
 a.nav-link{
-	background-color: #343a40;
+	background-color: #2e373f;
 }
 .blink{
 	/*background-color: */
@@ -17,7 +17,7 @@ a.nav-link{
 @keyframes blinker
 {
 	50% {
-		opacity: 0;
+		opacity: 0.3;
 	}
 }
 

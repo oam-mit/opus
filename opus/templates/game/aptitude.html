@@ -16,8 +16,8 @@ Hopeless Opus|Aptitude
     <div class="container mt-5" style="margin-bottom:3%;">
         <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 md-offset-8">
-                    <div class="border" id="changer">
-                           <h3 style="opacity:1; color: white; padding:10px; text-align:center;" >
+                    <div id="changer">
+                           <h3 class="style-question-apt lead" style=" text-align:justify;" >
                                {%autoescape off%}
                                {{question.question}}
                                {%endautoescape%}
@@ -38,15 +38,12 @@ Hopeless Opus|Aptitude
                 </div>
                 <br>
                 <div class="container row justify-content-center">
-                    <button type="submit" class="btn btn-success"  style="z-index:1000;"><b>Submit</b></button></div>
+                    <button type="submit" class="btn btn-primary"  style="z-index:1000;"><b> Submit! </b></button></div>
             </div>
         </div>
 </form>
 
 
-
-
-    
 {%endblock%}
 
 {%block other_js%}

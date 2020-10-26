@@ -14,13 +14,34 @@ Profile|{{user.username}}
 {%endblock%}
 {%block content%}
 
-<div class="container mt-md-3 mt-3">
+{% block bg %}
+{% endblock %}
+
+<div class="jumbotron text-center jumbo-style">
+  {%if user.userprofile.image%}<img src="{%if user.userprofile.image.url == '/media/default.jpg'%}https://ui-avatars.com/api/?name={{user.first_name}} {{user.last_name}}{%else%}{{user.userprofile.image.url}}{%endif%}" alt="{{user.username}}" width="200px" height="200px" >{%endif%}
+  <h1 class="display-3">Name</h1>
+  <h2 class="display-5 text-center">Registration Number</h2>
+
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6">
+      <h2 class="text-center" style="color: white;">Image</h2>
+    </div>
+    <div class="col-lg-6">
+      <h2 class="text-center" style="color: white;">Username</h2>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container mt-md-3 mt-3">
 
     <div class="row">
 
         <div class="col-12">
 
-                <div class="card mb-3 offset-md-3" style="max-width: 540px; height:auto;">
+                <div class="card mb-3" style="max-width: 45%; height:auto;">
                         <div class="row no-gutters">
                           <div class="col-md-4">
                             {%if user.userprofile.image%}<img src="{%if user.userprofile.image.url == '/media/default.jpg'%}https://ui-avatars.com/api/?name={{user.first_name}} {{user.last_name}}{%else%}{{user.userprofile.image.url}}{%endif%}" class="card-img rounded-circle" alt="{{user.username}}" width="200px" height="200px" style="margin: 10px auto 20px;display: block;">{%endif%}
@@ -41,21 +62,22 @@ Profile|{{user.username}}
 
         </div>
 
-    </div>
+    </div> -->
 
-    <div class="row">
+    <!-- <div class="row">
       {%if messages%}
       {%for message in messages%}
       <div class="alert alert-{{message.tags}} offset-md-4">
         {{message}}
 
-      </div>
+      </div> -->
 
-      {%endfor%}
-      {%endif%}
+      <!-- {%endfor%}
+      {%endif%} -->
 
-      <div class="col-12 offset-lg-3">
-        <h4 class="text-danger offset-2">Profile Update</h4>
+      
+      <!-- <div class="col-12 offset-lg-3">
+        <h4 class="offset-2" style="font-size: 3em;">Update Image</h4>
 
         <form style="margin-bottom: 30px;" method="POST" enctype="multipart/form-data" id="myForm">
           {%csrf_token%}
@@ -64,13 +86,13 @@ Profile|{{user.username}}
                     <input onchange="change()" type="file" name="image" accept="image/*" class=" clearableFileinput custom-file-input" id="id_image">
                     <label class="custom-file-label" for="id_image">Choose Image</label>
                   </div>
-                  <p class="text-danger" id="change">Chosen file:</p>
+                  <p class="text-danger form-style" id="change">Chosen file:</p>
                   {%for f in profile_form%}
                   {%if f.auto_id != "id_image"%}
                   {{f|as_crispy_field}}
                   {%endif%}
                   {%endfor%}
-                  <h6 class="text-danger">Username</h6>
+                  <h6  style="font-size: 3em; color:#000;;">Username</h6>
                   {{user_form|crispy}}
               </div>
               <div class="form-group row" style="margin-top: 10px;">
@@ -81,11 +103,7 @@ Profile|{{user.username}}
                   </div>
               </div>
   
-     
-  
-  
-       
-  
+
   
       </form>
 
@@ -95,7 +113,7 @@ Profile|{{user.username}}
 
     </div>
 
-</div>
+</div> -->
 
 {%endblock%}
 

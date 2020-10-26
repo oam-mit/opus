@@ -17,7 +17,139 @@
 
     {%block other_css%}
     {%endblock%}
+    {%block body_color%}
+    <style>
+      body {
+margin: 0;
+background-color: #081327;
+          overflow: hidden auto;
+}
 
+
+
+/*canvas {
+display: block;
+vertical-align: bottom;
+}*/
+
+
+/* ---- particles.js container ---- */
+
+#particles-js {
+position: absolute;
+width: 100%;
+height: 150%;
+z-index: -1000;
+background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%),{% block bg %} url("/static/img/hogwarts-bg.jpg");{%endblock%}
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: scroll;
+background-size: cover;
+}
+
+h1{
+color:rgb(14, 13, 13) ;
+text-align:center;
+
+
+}
+  #margin_given{
+  margin-left:40%;
+}
+@media screen and (max-width: 700px){
+  #margin_given{
+      margin-left:0%;}
+}
+.box{
+  border-radius: 10px 10px;
+  background: linear-gradient(to bottom right, #dedce8, #f9f9f9,#1111);
+  opacity: 0.2;
+  margin-bottom: 5%;
+   
+}
+      p{
+          opacity: 1 !important;
+          color:rgb(24, 23, 23);
+          padding: 9%;
+
+      }
+      .style-options p{
+        height: 10%;
+        border: 2px solid black;
+        border-radius: 4px;
+        background-color: #000000b9;
+background-image: linear-gradient(147deg, #000000ab 0%, #434343c4 74%);        text-align: center;
+        padding: 12%;
+        color: white;
+        -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+      }
+      .style-question{
+        background-color: rgb(235, 243, 243);
+        cursor: pointer;
+      }
+      .style-question-apt{
+        background-color: rgb(235, 243, 243);
+        cursor: pointer;
+        padding: 3%;
+        font-size: 2rem;
+        
+      }
+      .style-question:hover{
+        -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+      }
+      .style-question-apt:hover{
+        -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+      }
+      .style-options-1{
+        height: 10%;
+        border-width: 10px;
+  border-style: solid;
+  border-image: 
+    linear-gradient(
+      to bottom, 
+      rgb(119, 29, 6), 
+      rgba(0, 0, 0, 0)
+    ) 1 100%;
+    -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+        font-weight: bolder;
+        background-color: #cfca9dcc;
+        text-align: center;
+        padding: 12%;
+      }
+      .style-options p:hover{
+        background-color: burlywood;
+      }
+      .spacer{
+          margin-top:70px;
+      }
+      .spacer2{
+          margin-top:100px;
+      }
+      @media screen and (max-width: 700px){
+          .spacer2{
+              margin-top:20px;
+          }
+      }
+      .form-style{
+        background-color: #081327cc;
+        margin-right: 65%;
+        margin-top: 5%;
+        border-radius: 4px;
+        
+      }
+     .chatting:hover{
+       opacity: 0.7;
+cursor: pointer;     } 
+  </style>
+{%endblock%}
 </head>
 
 <body>
@@ -34,7 +166,7 @@
     </script>
     
   <audio autoplay loop>
-    <source src="{%static 'sacred_games.mp3'%}" type="audio/mpeg">
+    <source src="{%static '.mp3'%}" type="audio/mpeg">
   </audio>
 <div class="nav navbar navbar-expand-md bg-dark navbar-dark sticky-top">
   <!-- Brand -->
@@ -110,7 +242,7 @@
                         <tbody>
                             <tr>
                             <td>Omkar Masur</td>
-                            <td>+919930147279</td>
+                            <td>+91-9930147279</td>
                             </tr>
                             <tr>
                             <td>Anmol Malhotra</td>
@@ -369,7 +501,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">{{user.first_name}} Profile</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">{{user.first_name}}'s Profile</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -397,7 +529,7 @@
   <div class="chatting" id="chatting_id" style="z-index: 100000;">
     <div>
       <a  data-toggle="modal" data-target="#ChatModal" onclick="hidefunction()">
-        <i class="fas fa-comments" style="color: crimson;"></i>
+        <i class="fas fa-map-signs" style="color: rgb(161, 34, 25);"></i>
       </a>
     </div>
   </div>
@@ -407,25 +539,23 @@
     <div class="modal-dialog modal-dialog-left" id="xyz" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">ChatBot</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Map</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="showfunction()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <div class="chat-output" id="chat-output">
-            <div class="user-message">
-              <div class="message">Bot:Hi! I'm a bot. What's up?</div>
-            </div>
+         
+          <div class="container text-center">
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1s77kacSpm7tWckFJdLnHS4aOtzM4EqyU"  height="480"></iframe>
+
           </div>
-          
-          
         </div>
-        <div class="modal-footer d-flex justify-content-center">
+        <!-- <div class="modal-footer d-flex justify-content-center">
           <div>
-            <form action="#0" id="user-input-form">
+            <form action="#0" id="user-input-form"> -->
               <!-- <input type="text" id="user-input" class="user-input" placeholder="Talk to the bot."> -->
-              <div class="input-group">
+              <!-- <div class="input-group">
                 <textarea id="user-input" class="form-control" rows="3" placeholder="Talk to the Bot"></textarea>
                 <span class="input-group-btn ml-1">
                   <button class="btn btn-primary" type="submit"><i class="fas fa-paper-plane"></i></button>
@@ -435,7 +565,7 @@
             </form>
           </div>
           
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -449,70 +579,6 @@
 
 <!-- particles.js lib - https://github.com/VincentGarreau/particles.js --> 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-{%block body_color%}
-    <style>
-        body {
-  margin: 0;
-  background-color: #081327;
-            overflow: hidden auto;
-}
-
-
-/*canvas {
-  display: block;
-  vertical-align: bottom;
-}*/
-
-
-/* ---- particles.js container ---- */
-
-#particles-js {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -1000;
-  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url("/static/img/wand.jpeg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-size: cover;
-}
-h1{
- color:white;
-  text-align:center;
-}
-    #margin_given{
-    margin-left:40%;
-}
-@media screen and (max-width: 700px){
-    #margin_given{
-        margin-left:0%;}
-}
-.box{
-    border-radius: 10px 10px;
-    background: linear-gradient(to bottom right, #dedce8, #f9f9f9,#1111);
-    opacity: 0.2;
-    margin-bottom: 5%;
-     
-}
-        p{
-            opacity: 1 !important;
-            color:white;
-            padding:10px !important;
-        }
-        .spacer{
-            margin-top:70px;
-        }
-        .spacer2{
-            margin-top:100px;
-        }
-        @media screen and (max-width: 700px){
-            .spacer2{
-                margin-top:20px;
-            }
-        }
-    </style>
-    {%endblock%}
     {%block background%}
 
     <script src="{%static 'background.js'%}"></script>

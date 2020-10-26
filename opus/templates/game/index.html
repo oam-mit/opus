@@ -13,8 +13,8 @@ Hopeless Opus|Story
     <div class="container">
         <div class="row container-fluid justify-content-center">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding">
-                    <div class="border spacer2">
-                        <p style="text-align:center; font-size: 20px; color: white;" oncontextmenu="return false;"><b> {{story.question}}</b></p>
+                    <div class="spacer2 style-question">
+                        <p style="text-align:center; font-size: 20px; " oncontextmenu="return false;"><b> {{story.question}}</b></p>
                     </div>
                 </div>
         </div>
@@ -27,19 +27,20 @@ Hopeless Opus|Story
                
                 {%for option in story.story_options_set.all%}
                     <div class="col-lg-{{number}} col-md-{{number}} col-sm-12 col-xs-12">
-                    <a href="{%url 'game:check_story' forloop.counter%}" style="z-index:1000; color:white; text-decoration:none;">
-                        <div class="border border-success  rounded">
-                            <p style="font-size: 18px;">{{option.option}}</p>
+                    <a href="{%url 'game:check_story' forloop.counter%}" style="z-index:1000; color:black; text-decoration:none;">
+                        <div class="style-options">
+                            <p class="lead text-justify" style="font-size: 18px;">{{option.option}}</p>
                         </div>
                     </a>
                     </div>
                     {%endfor%}
               
                     
-                    
+                  
                    
             </div>
         </div>
 </div>
 {%endautoescape%}
 {%endblock%}
+
