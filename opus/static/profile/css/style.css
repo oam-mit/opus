@@ -572,7 +572,7 @@ body:after {
   background-repeat: no-repeat;
   background-position: top;
   background-position: center center;
-  background-color: #ffdd40; }
+  background:linear-gradient(315deg, #f2cf07 0%, #55d284 74%) }
   .site-blocks-cover.overlay {
     position: relative; }
     .site-blocks-cover.overlay:before {

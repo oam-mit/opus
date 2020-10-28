@@ -14,9 +14,9 @@ def index(request,reg_number):
     except:
         return render(request,template_name="viewing/notfound.html")
 
-    obj=UserProfile.objects.filter(points__gte=profile.points).order_by('-points','pk')
+    obj=UserProfile.objects.getLeaderboard()
 
-    rank_obj=obj.annotate(rank=Count('pk',filter=Q(pk__lt=request.user.userprofile.pk))).first()
+    rank_obj=obj.annotate(rank=Count('pk',filter=Q(pk__lt=profile.pk))).first()
 
  
  
@@ -49,7 +49,7 @@ def search(request):
  
     profiles=[]
     for query in queries:
-        profile=UserProfile.objects.filter(Q(user__first_name__icontains=query)|Q(user__last_name__icontains=query)).distinct()
+        profile=UserProfile.objects.filter(Q(user__first_name__icontains=query)|Q(user__last_name__icontains=query)|Q(reg_number__icontains=query)).distinct()
             
         for p in profile:
             profiles.append(p)

@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect,HttpResponse,HttpResponsePermanentR
 from django.utils import timezone
 from django.db.models import Count,Q
 from django.contrib import messages as mess
-
+from .decorators import staff_not_required
 
 
 from .models import Story_Question,Story_Options,Aptitude_Question
@@ -31,6 +31,7 @@ def check_staff(request): #Only non-staff members are allowed to play
 
 # Create your views here.
 @login_required
+@staff_not_required
 def index(request):
     if request.user.userprofile.is_story is False:   #Player is on an aptitude question
         return redirect(reverse("game:aptitude"),permanent=True)
@@ -67,6 +68,7 @@ def index(request):
 
 
 @login_required
+@staff_not_required
 def check_story(request,option):
     if request.user.userprofile.is_story is False: #User is not on story question
         return HttpResponseRedirect(reverse("game:aptitude")) #Redirect to aptitude
@@ -90,6 +92,7 @@ def check_story(request,option):
 
 
 @login_required
+@staff_not_required
 def aptitude(request):
     from . forms import AptitudeForm
     
@@ -121,7 +124,7 @@ def aptitude(request):
     }
     return render(request,template_name='game/aptitude.html',context=context)
 
-
+@staff_not_required
 def check_aptitude(request):
     from .forms import AptitudeForm
     if request.method=='POST':
@@ -153,6 +156,7 @@ def check_aptitude(request):
 
 
 @login_required
+@staff_not_required
 def day_ending(request,day):
     table = UserProfile.objects.getLeaderboard()
     context={
@@ -189,6 +193,7 @@ def profile(request):
 
 
 @login_required
+@staff_not_required
 def game_end(request):
     if request.user.userprofile.is_ended==False:
         return HttpResponseRedirect(reverse('game:index'))

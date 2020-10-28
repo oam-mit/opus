@@ -79,7 +79,7 @@
         <div class="row">
           <div class="col-3" style="margin-top: -7%;">
             <div class="slide-one-item home-slider owl-carousel">
-              <img src="{%if user.userprofile.image.url == '/media/default.jpg'%}https://ui-avatars.com/api/?name={{user.first_name}} {{user.last_name}}{%else%}{{user.userprofile.image.url}}{%endif%}" alt="Profile Picture" class="img">
+              <img style=" display: block; margin-left: auto; margin-right: auto;" src="{%if profile.image.url == '/media/default.jpg'%}https://ui-avatars.com/api/?name={{profile.user.first_name}} {{profile.user.last_name}}{%else%}{{profile.image.url}}{%endif%}" alt="Profile Picture" class="img">
             </div>
           </div>
         </div>

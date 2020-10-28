@@ -1,4 +1,4 @@
-.nav{
+/* .nav{
 	margin-bottom: 0px;
 	padding: 0.7%;
 }
@@ -10,9 +10,9 @@ a.nav-link{
 	background-color: #2e373f;
 }
 .blink{
-	/*background-color: */
+
 	animation: blinker 2s linear infinite;
-}
+} */
 
 @keyframes blinker
 {

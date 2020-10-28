@@ -17,7 +17,7 @@ def signup(request):
     if request.method=="POST":
         u_form=UserForm(request.POST)
         p_form=ProfileForm(request.POST)
-        if u_form.is_valid() and p_form.is_valid() and u_form.unique_name():
+        if u_form.is_valid() and p_form.is_valid() :
             try:
                 user=u_form.save()
                 p=UserProfile(user=user,reg_number=p_form.cleaned_data['reg_number'])
@@ -29,7 +29,7 @@ def signup(request):
             except:
                 transaction.set_rollback(True)
         else:
-            messages.error(request,"You may have already Registered")
+            messages.error(request,"Please check the inputs given")
     else:
         u_form=UserForm()
         p_form=ProfileForm()

@@ -60,25 +60,29 @@
 					<span class="login100-form-title p-b-59">
 						Sign Up
 					</span>
+
                     {{u_form|crispy}}
                     {{p_form|crispy}}
 					
-					<div class="g-recaptcha" data-sitekey="6LcC-sYUAAAAAMpqMcnq7I02JSn_e_SdZTfXVECL"></div>
+					<!-- <div class="g-recaptcha" data-sitekey="6LcC-sYUAAAAAMpqMcnq7I02JSn_e_SdZTfXVECL"></div> -->
                         <!-- </div>  -->
 
-					<div class="">
-						<div class="">
-							<div class=""></div>
-							<button class="btn btn-style my-3" type="submit" name="submit">
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" type="submit" name="submit">
 								Sign Up
 							</button>
 						</div>
 
-						<a href="{%url 'user:login'%}" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
-							Sign in
-							<i class="fa fa-long-arrow-right m-l-5"></i>
-						</a>
+						
+
+						
 					</div>
+					<a href="{%url 'user:login'%}" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+						Sign in
+						<i class="fa fa-long-arrow-right m-l-5"></i>
+					</a>
 				</form>
 				
 			</div>

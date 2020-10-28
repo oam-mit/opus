@@ -12,7 +12,7 @@ app_name="user"
 
 urlpatterns=[
     path("",views.index,name="index"),
-    path("sign-in/",CustomLoginView.as_view(template_name='user/login.html',redirect_authenticated_user=True),name="login"),
+    path("sign-in/",CustomLoginView.as_view(template_name='user/login.html'),name="login"),
     path("sign-up/",views.signup,name="signup"),
     path("logout",user_views.LogoutView.as_view(template_name='user/index.html'),name="logout"),
     path("password-reset/",user_views.PasswordResetView.as_view(template_name="user/reset.html"),name="reset"),

@@ -13,9 +13,13 @@ class UserForm(UserCreationForm):
         help_text="<ol><li>Passwords are not stored in Raw form. Hence, even the admins cannot see your password</li><li>Password should not be too similar to your username</li><li><b>Password should not be entirely Numeric</b></li></ol>",
         label="Password")
     
-    first_name=forms.CharField(widget=forms.TextInput(attrs={'class':'col-12'}),label="Firstname")
-    last_name=forms.CharField(widget=forms.TextInput(attrs={'class':'col-12'}),label="Lastname")
-    email=forms.EmailField(widget=forms.EmailInput(attrs={'class':'col-12'}),help_text="If you forget your password, then your emailId will be used to reset it.")
+    first_name=forms.CharField(widget=forms.TextInput(attrs={'class':'col-12','placeholder':'First Name'}),label="Firstname")
+    last_name=forms.CharField(widget=forms.TextInput(attrs={'class':'col-12','placeholder':'Last Name'}),label="Lastname")
+    email=forms.EmailField(widget=forms.EmailInput(attrs={'class':'col-12','placeholder':'xyz@xyz.com'}),help_text="If you forget your password, then your Email ID will be used to reset it.")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args,**kwargs)
+        self.fields['username'].widget.attrs.pop("autofocus", None)
     
 
     class Meta:
@@ -59,7 +63,7 @@ class ProfileUpdateForm(forms.ModelForm):
         fields=['image']
     
 class UserUpdateForm(forms.ModelForm):
-    username=forms.CharField(widget=forms.TextInput(attrs={'class':'col-md-3'}),required=False,label="")
+    username=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),required=False,label="")
     class Meta:
         model=User
         fields=['username']
