@@ -1,9 +1,12 @@
 from django.shortcuts import render,reverse
 
 from django.contrib.auth.models import User
-from user.models import UserProfile
 
-from django.http import HttpResponseRedirect,HttpResponse
+
+from user.models import UserProfile
+from game.utils import get_rank
+
+from django.http import HttpResponseRedirect,HttpResponse,Http404
 from django.db.models import Q,Count
 
 
@@ -12,32 +15,14 @@ def index(request,reg_number):
     try:
         profile=UserProfile.objects.get(reg_number=reg_number)
     except:
-        return render(request,template_name="viewing/notfound.html")
-
-    obj=UserProfile.objects.getLeaderboard()
-
-    rank_obj=obj.annotate(rank=Count('pk',filter=Q(pk__lt=profile.pk))).first()
-
- 
- 
-
-    rank=rank_obj.rank+1
-    # rank=1
-    # for i in obj :
-    #     if i.reg_number==profile.reg_number:
-    #         break
-    #     rank+=1
-    
-
-    
+        raise Http404()
 
 
-    obj=obj[:5]
+    rank=get_rank(request.user.userprofile)
 
     context={
         'profile':profile,
         'rank':rank,
-        'toppers':obj,
     }
 
     return render(request,template_name="viewing/index.html",context=context)

@@ -30,7 +30,7 @@ class Story_Options(models.Model):
     on_chosen=models.IntegerField()
 
     def __str__(self):
-        return self.question.question +"--->"+self.level.description
+        return self.option +"--->"+self.level.description
     
     class Meta:
         unique_together=[['question','level']]

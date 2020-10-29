@@ -17,13 +17,15 @@ class UserForm(UserCreationForm):
     last_name=forms.CharField(widget=forms.TextInput(attrs={'class':'col-12','placeholder':'Last Name'}),label="Lastname")
     email=forms.EmailField(widget=forms.EmailInput(attrs={'class':'col-12','placeholder':'xyz@xyz.com'}),help_text="If you forget your password, then your Email ID will be used to reset it.")
 
+   
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
         self.fields['username'].widget.attrs.pop("autofocus", None)
     
 
     class Meta:
-        fields=['username','first_name','last_name','email','password1']
+        fields=['username','first_name','last_name','email','password1','password2']
         model=User
 
     def unique_name(self):
@@ -51,16 +53,20 @@ class ProfileForm(forms.ModelForm):
     reg_number=forms.CharField(widget=forms.NumberInput(attrs={'class':'col-12'}),label="Registration Number <br>(Non-MAHE students should enter phone number)",
         error_messages={'unique':'Registration number already Exists'})
     mob_number=forms.CharField(widget=forms.TextInput(attrs={'class':'col-12'}),label="Mobile Number",min_length=10,max_length=15,required=False)
+
+    userid=forms.CharField(widget=forms.TextInput(attrs={'class':'col-12','placeholder':'eg.1234'}),label="User Id",help_text="<ol><li>User Id, which is issued from the TechTatva portal will be used for validation at the time of prize distribution.</li><li> Please enter a valid userid if you have one. If you do not have one, please leave it blank. You can edit it later too</li></ol>",required=False)
+
     class Meta:
         model=UserProfile
-        fields=['reg_number','mob_number']
+        fields=['reg_number','mob_number','userid']
 
 
 
 class ProfileUpdateForm(forms.ModelForm):
+    userid=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'eg.1234'}),required=False,label="")
     class Meta:
         model=UserProfile
-        fields=['image']
+        fields=['image','userid']
     
 class UserUpdateForm(forms.ModelForm):
     username=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),required=False,label="")

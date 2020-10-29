@@ -1,0 +1,62 @@
+{%extends 'game/base.html'%}
+{%load static%}
+
+
+{%block map%}
+{%endblock%}
+
+
+{% block bg %} url("/static/img/welcome2.jpeg");{%endblock%}
+
+
+{%block content%}
+<link rel="stylesheet" type="text/css" href="{%static 'css/congrats.css'%}">
+
+<br>
+<br>
+<br>
+  
+<div class="d-none d-sm-block">    
+<center><h2 class="blink" id="text-style"  style="color:white !important">Welome to <br/><h1 style="font-size:100px!important; color:white !important">Hopeless Opus</h1></h2></center>
+</div>
+<div class="d-sm-none">
+  <center><h5 class="blink" style="color:white !important"><b>Welome to  <br/><span style="font-size:70px!important;">Hopeless Opus</span> </b></h5></center>
+</div>
+</div>
+  <br>
+  <br>
+  <br>
+
+<h5 class="d-none d-sm-block" style="color:white !important">
+ <center>You can enter magical grounds on <b>5th November 2020</b> @ <b>12am</b></center>
+</h5>
+
+<h5 class="d-sm-none" style="color:white !important">
+ <center>You can enter magical grounds on <br/><b>5th November 2020</b> <br/>@ <b>12am</b></center>
+</h5> 
+ 
+    
+
+
+<canvas id="canvas" style="width: 100%;"></canvas>
+
+<div id="new" class="fixed-bottom">DEVELOPED BY ACUMEN</div>
+
+
+<script>
+  let x=1;
+  setInterval(()=>{
+    document.getElementById("particles-js").style.transition = "all 1s ease linear";
+    document.getElementById("particles-js").style.background=`linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url('/static/img/welcome${x}.jpeg')`;
+    document.getElementById("particles-js").style.backgroundSize="cover";
+    document.getElementById("particles-js").style.backgroundPosition="center";
+
+
+    if(x===1)
+      x=2;
+    else
+      x=1;
+  },10000);
+</script>
+
+{%endblock%}

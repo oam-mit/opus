@@ -9,7 +9,7 @@ from .decorators import staff_not_required
 
 
 from .models import Story_Question,Story_Options,Aptitude_Question
-from .utils import check_day_end
+from .utils import check_day_end,REDIRECT,STAY,get_rank
 
 from user.models import UserProfile
 from user.forms import ProfileUpdateForm,UserUpdateForm
@@ -33,15 +33,24 @@ def check_staff(request): #Only non-staff members are allowed to play
 @login_required
 @staff_not_required
 def index(request):
-    if request.user.userprofile.is_story is False:   #Player is on an aptitude question
-        return redirect(reverse("game:aptitude"),permanent=True)
 
     
 
+    if request.user.userprofile.is_story is False:   #Player is on an aptitude question
+        return redirect(reverse("game:aptitude"))
 
-    else:                                            #Player is on story question
-        #check_day_end()
-        now=timezone.now().date().day
+    
+    
+
+    else: 
+        status=check_day_end(request.user.userprofile.story)                                           #Player is on story question
+        if status['status']!=STAY:
+            if status['day']>0:
+                return redirect(reverse('game:day_ending',args=[status['day']]))
+            else:
+                return redirect(reverse('game:welcome'))
+
+        
         try:
             story=Story_Question.objects.get(question_number=request.user.userprofile.story)
                                                      #Get the story question player is on
@@ -105,6 +114,7 @@ def aptitude(request):
     except: #No aptitude question exists
         request.user.userprofile.is_story=True #Set story flag to true
         selected_option=Story_Options.objects.get(question__question_number=request.user.userprofile.story,level__level=request.user.userprofile.path)
+        
 
         request.user.userprofile.story=selected_option.on_chosen
 
@@ -158,6 +168,9 @@ def check_aptitude(request):
 @login_required
 @staff_not_required
 def day_ending(request,day):
+    status=check_day_end(request.user.userprofile.story)
+    if status['status']!=REDIRECT or status['day']!=day:
+        return redirect(reverse('game:index'))
     table = UserProfile.objects.getLeaderboard()
     context={
         'toppers':table,
@@ -170,7 +183,9 @@ def day_ending(request,day):
 @login_required
 def profile(request):
 
-    obj=UserProfile.objects.filter(points__gte=request.user.userprofile.points).order_by('-points','pk').annotate(rank=Count('pk',filter=Q(pk__lt=request.user.userprofile.pk)))
+    rank=get_rank(request.user.userprofile)
+    
+    
 
     if request.method=='POST':
       profile_form=ProfileUpdateForm(request.POST,request.FILES,instance=request.user.userprofile)
@@ -185,7 +200,7 @@ def profile(request):
         user_form=UserUpdateForm(instance=request.user)
    
     context={
-        'rank':obj[0].rank+1,
+        'rank':rank,
         'user_form':user_form,
         'profile_form':profile_form,
     }
@@ -203,3 +218,12 @@ def game_end(request):
     }
 
     return render(request,template_name='game/game_end.html',context=context)
+
+
+def welcome(request):
+    status=check_day_end(request.user.userprofile.story)
+
+    if status['status']!=REDIRECT or status['day']>0:
+        return redirect(reverse('game:index'))
+    
+    return render(request,'game/welcome.html')

@@ -13,6 +13,7 @@ urlpatterns=[
     path("end/day<int:day>/",views.day_ending,name="day_ending"),
     path('profile/',views.profile,name="profile"),
     path("end/",views.game_end,name="game_end"),
+    path('welcome',views.welcome,name="welcome"),
 
     #Checking for staff
     path("check_staff/",views.check_staff,name="check_staff"),

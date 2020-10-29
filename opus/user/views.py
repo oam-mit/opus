@@ -20,7 +20,7 @@ def signup(request):
         if u_form.is_valid() and p_form.is_valid() :
             try:
                 user=u_form.save()
-                p=UserProfile(user=user,reg_number=p_form.cleaned_data['reg_number'])
+                p=UserProfile(user=user,reg_number=p_form.cleaned_data['reg_number'],userid=p_form.cleaned_data['userid'])
                 if p_form.cleaned_data['mob_number']:
                     p.mob_number=p_form.cleaned_data['mob_number']
                 p.save()

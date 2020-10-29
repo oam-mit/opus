@@ -12,7 +12,7 @@
   
   
   <link rel="stylesheet" href="{%static 'css/story.css'%}">
-  <link rel="icon" type="image/ico" href="{%static 'img/acumen2.png'%}" />
+  <link rel="icon" type="image/ico" href="{%static 'img/acumen.png'%}" />
   <link rel="stylesheet" href="{%static 'fonts/fontawesome/css/all.css'%}">
 
     {%block other_css%}
@@ -38,13 +38,13 @@ vertical-align: bottom;
 #particles-js {
 position: absolute;
 width: 100%;
-height: 150%;
+height: 100vh;
 z-index: -1000;
 background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%),{% block bg %} url("/static/img/hogwarts-bg.jpg");{%endblock%}
 background-position: center;
 background-repeat: no-repeat;
 
-background-size: auto;
+background-size: cover;
 }
 
 h1{
@@ -235,8 +235,8 @@ cursor: pointer;     }
                       <table class="table table-striped table-bordered table-condensed">
                         <thead>
                           <tr>
-                            <td>NAME</td>
-                            <td>CONTACT NUMBER</td>
+                            <td>Name</td>
+                            <td>Contact number</td>
                           </tr>
                         </thead>
                         <tbody>
@@ -246,7 +246,7 @@ cursor: pointer;     }
                             </tr>
                             <tr>
                             <td>Anmol Malhotra</td>
-                            <td>+91</td>
+                            <td>+919911519233</td>
                             </tr>
                            
                         </tbody>
@@ -269,132 +269,32 @@ cursor: pointer;     }
             
           </div>
           <div class="modal-body">
-            <ul>
-            <li data-toggle="collapse" data-target="#day1">Day 1(October 9)</li><br>
-            <center id="day1" class="collapse">
-                    <div class="table-responsive">
-                      <table class="table table-striped table-bordered table-condensed">
-                        <thead>
-                          <tr>
-                            <td>EVENT NAME</td>
-                            <td>ROUND/TIMING</td>
-                            <td>LOCATION</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td>AIB</td>
-                            <td>Round 1/ 1PM</td>
-                            <td>NHL 203</td>
-                            </tr>
-                            <tr>
-                            <td>MIQ</td>
-                            <td>Round 1/ 2:30PM</td>
-                            <td>NHL 203</td>
-                            </tr>
-                            <tr>
-                            <td>ATR</td>
-                            <td>Round 1/ 4PM</td>
-                            <td>NHL 203</td>
-                            </tr>
-                        </tbody>
-                      </table>
-                    </div>  
-                  </center>
-            <li data-toggle="collapse" data-target="#day2">Day 2(October 10)</li><br>
-            <center id="day2" class="collapse">
-                    <div class="table-responsive">
-                      <table class="table table-striped table-bordered table-condensed">
-                        <thead>
-                          <tr>
-                            <td>EVENT NAME</td>
-                            <td>ROUND/TIMING</td>
-                            <td>LOCATION</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td>ATR</td>
-                            <td>Round 1/ 1PM</td>
-                            <td>NHL 203</td>
-                            </tr>
-                            <tr>
-                            <td>AIB</td>
-                            <td>Round 1/ 2:30PM</td>
-                            <td>NHL 203</td>
-                            </tr>
-                            <tr>
-                            <td>MIQ</td>
-                            <td>Round 1/ 4PM</td>
-                            <td>NHL 203</td>
-                            </tr>
-                        </tbody>
-                      </table>
-                    </div>  
-                  </center>
-            <li data-toggle="collapse" data-target="#day3">Day 3(October 11)</li><br>
-            <center id="day3" class="collapse">
-                    <div class="table-responsive">
-                      <table class="table table-striped table-bordered table-condensed">
-                        <thead>
-                          <tr>
-                            <td>EVENT NAME</td>
-                            <td>ROUND/TIMING</td>
-                            <td>LOCATION</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td>AIB</td>
-                            <td>Round 2/ 1PM</td>
-                            <td>NHL 204</td>
-                            </tr>
-                            <tr>
-                            <td>ATR</td>
-                            <td>Round 1/ 3:30PM</td>
-                            <td>NHL 203</td>
-                            </tr>
-                            <tr>
-                            <td>MIQ</td>
-                            <td>Round 1/ 5PM</td>
-                            <td>NHL 203</td>
-                            </tr>
-                        </tbody>
-                      </table>
-                    </div>  
-                  </center>
-            <li data-toggle="collapse" data-target="#day4">Day 4(October 12)</li><br>
-            <center id="day4" class="collapse">
-                    <div class="table-responsive">
-                      <table class="table table-striped table-bordered table-condensed">
-                        <thead>
-                          <tr>
-                            <td>EVENT NAME</td>
-                            <td>ROUND/TIMING</td>
-                            <td>LOCATION</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td>AIB</td>
-                            <td>Final/ 1PM</td>
-                            <td>NHL 205</td>
-                            </tr>
-                            <tr>
-                            <td>ATR</td>
-                            <td>Final/ 1PM</td>
-                            <td>NHL 305</td>
-                            </tr>
-                            <tr>
-                            <td>MIQ</td>
-                            <td>Final/ 1PM</td>
-                            <td>NHL 304</td>
-                            </tr>
-                        </tbody>
-                      </table>
-                    </div>  
-                  </center>
-            </ul>
+            <center>
+              <br />
+              <br />
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <td>NAME</td>
+                      <td>URL</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                      <td>ATR</td>
+                      <td><a href="https://atr.techtatva.in" target="_blank">https://atr.techtatva.in</a></td>
+                      </tr>
+                      <tr>
+                      <td>AIB</td>
+                      <td><a href="https://aib.techtatva.in" target="_blank">https://aib.techtatva.in</a></td>
+                      </tr>
+                     
+                  </tbody>
+                </table>
+              </div>  
+            </center>
+  
           </div>
         </div>
       </div>
@@ -414,15 +314,18 @@ cursor: pointer;     }
             <ul>
             <li>THIS IS CHOICE DRIVEN GAME</li><br>
             <li>YOUR CHOICES DEFINE YOUR PATH WHICH DEFINE THE QUESTIONS</li><br>
-            <li>THE GAME CONSISTS OF 66 CHECKPOINTS SOME WITH 3 CHOICES WITH A DAILY CAP OF A CERTAIN QUESTION.</li>
+            <li>THE GAME CONSISTS OF SEVERAL CHECKPOINTS SOME WITH 3 CHOICES WITH A DAILY CAP OF A CERTAIN QUESTIONS.</li>
             <br>
-            <li>ON CHOOSING THE "BEST" ROUTE YOU WILL GET +7 POINTS</li>
+            <li>ON CHOOSING THE <b>"BEST"</b> OPTION YOU WILL GET <b>+7</b> POINTS</li>
             <br>
-            <li>ON CHOOSING THE "LONG" ROUTE YOU WILL GET +5 POINTS</li>    
+            <li>ON CHOOSING THE <b>"WORST"</b> ROUTE YOU WILL GET <b>+3</b> POINTS</li>    
             <br>
-            <li>ON CHOOSING THE "DEAD END" YOU WILL GET +3 POINTS</li>
+            <li>ON CHOOSING THE OPTION WHICH IS <b>"IN BETWEEN THE TWO"</b>, YOU WILL GET <b>+5</b> POINTS</li>
             <br>
-            <li><b>LETS SEE WHO SAVES MANIPAL FROM AN ABOUT TO DETONATE NUCLEAR BOMB</b></li>
+            <li>SOME QUESTIONS HAVE OPTIONS WHICH WILL AWARD <b>0</b> POINTS NO MATTER WHICH OPTION YOU CHOOSE. THESE QUESTIONS ARE MEANT FOR MAINTAINING A FLOW IN THE STORY AND ALSO TO BALANCE POINTS AMONG PATHS</li>
+            <li>POINTS ARE AWARDED ONCE YOU ANSWER THE APTITUDE QUESTIONS ASSOCIATED WITH THE STORY QUESTION, IF ANY</li>
+            <br>
+            <li>PLEASE UPDATE YOUR USER ID IN CASE YOU HAVEN'T. YOU CAN AVAIL PRIZES ONLY IF YOU HAVE A VALID USER ID. VALIDITY OF THE USER ID WILL BE CHECKED AT THE TIME OF DECLARATION OF WINNERS</li>
             </ul>
           </div>
         </div>
@@ -523,9 +426,11 @@ cursor: pointer;     }
       </div>
     </div>
   </div>
+  {%block particles%}
   <div id="particles-js"></div>
+  {%endblock%}
 
-
+{%block map%}
   <div class="chatting" id="chatting_id" style="z-index: 100000;">
     <div>
       <a  data-toggle="modal" data-target="#ChatModal" onclick="hidefunction()">
@@ -533,7 +438,7 @@ cursor: pointer;     }
       </a>
     </div>
   </div>
-
+{%endblock%}
 
   <div class="modal fade" id="ChatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-left" id="xyz" role="document">
