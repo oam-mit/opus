@@ -11,7 +11,7 @@ from .decorators import staff_not_required
 from .models import Story_Question,Story_Options,Aptitude_Question
 from .utils import check_day_end,REDIRECT,STAY,get_rank
 
-from user.models import UserProfile
+from user.models import UserProfile,Winners
 from user.forms import ProfileUpdateForm,UserUpdateForm
 
 
@@ -212,6 +212,8 @@ def profile(request):
 def game_end(request):
     if request.user.userprofile.is_ended==False:
         return HttpResponseRedirect(reverse('game:index'))
+    
+    winner,created=Winners.objects.get_or_create(user=request.user.userprofile)
     table = UserProfile.objects.getLeaderboard()
     context={
         'toppers':table,

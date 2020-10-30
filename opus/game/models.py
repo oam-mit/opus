@@ -54,4 +54,3 @@ class Aptitude_Question(models.Model):
         unique_together=[['story','question_number']]
     
 
-

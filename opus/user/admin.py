@@ -12,5 +12,9 @@ class ProfileAdmin(admin.ModelAdmin):
     def name(self,obj):
         return (obj.user.first_name+' '+obj.user.last_name)
 
+class WinnersAdmin(admin.ModelAdmin):
+    readonly_fields=['user','created']
+    ordering=['created']
 
 admin.site.register(models.UserProfile,ProfileAdmin)
+admin.site.register(models.Winners,WinnersAdmin)

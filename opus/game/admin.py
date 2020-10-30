@@ -21,7 +21,10 @@ class GameAdmin(admin.ModelAdmin):
 
 
 
+
+
 admin.site.register(models.Story_Question,GameAdmin)
 admin.site.register(models.Story_Options)
 admin.site.register(models.Aptitude_Question)
 admin.site.register(models.Levels)
+

@@ -31,3 +31,11 @@ class UserProfile(models.Model):
             op=(200,200)
             img.thumbnail(op)
             img.save(self.image.path)
+
+
+class Winners(models.Model):
+    user=models.ForeignKey(to=UserProfile,on_delete=models.CASCADE)
+    created=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.reg_number
