@@ -13,25 +13,25 @@ DAYS={
         'start_question':1,
         'end_question':1,
         'branches':[],
-        'date':datetime.datetime(2020,11,5,tzinfo=tz('Asia/Kolkata')),
+        'date':datetime.datetime(2020,10,30,tzinfo=tz('Asia/Kolkata')),
     },
    'day2':{
         'start_question':2,
         'end_question':2,
         'branches':[],
-        'date':datetime.datetime(2020,11,6,tzinfo=tz('Asia/Kolkata')),
+        'date':datetime.datetime(2020,10,31,tzinfo=tz('Asia/Kolkata')),
     },
     'day3':{
         'start_question':3,
         'end_question':3,
         'branches':[],
-        'date':datetime.datetime(2020,11,7,tzinfo=tz('Asia/Kolkata')),
+        'date':datetime.datetime(2020,11,1,tzinfo=tz('Asia/Kolkata')),
     },
     'day4':{
         'start_question':4,
         'end_question':5,
         'branches':[],
-        'date':datetime.datetime(2020,11,8,tzinfo=tz('Asia/Kolkata')),
+        'date':datetime.datetime(2020,11,2,tzinfo=tz('Asia/Kolkata')),
     },
 }
 
