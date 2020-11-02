@@ -26,7 +26,8 @@ def signup(request):
                 p.save()
                 messages.success(request,"Account Created Successfully")
                 return HttpResponseRedirect(reverse('user:login'))
-            except:
+            except Exception as e:
+                messages.error(request,'Something went wrong. Please try again')
                 transaction.set_rollback(True)
         else:
             messages.error(request,"Please check the inputs given")

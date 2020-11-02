@@ -69,6 +69,8 @@
           <h2 class="text-white-50 mx-auto mt-2 mb-5" style="font-family: HarryPotter"><span id="quiz-description"></span></h2>
           {%if not user.is_authenticated%}
           <a href="{%url 'user:signup'%}" class="btn btn-primary js-scroll-trigger"  style="font-family: HarryPotter">Get Started</a>
+          {%elif user.is_staff%}
+          <a href="{%url 'admin:index'%}" class="btn btn-primary js-scroll-trigger"  style="font-family: HarryPotter">Continue</a>
           {%else%}
           <a href="{%url 'game:index'%}" class="btn btn-primary js-scroll-trigger"  style="font-family: HarryPotter">Continue</a>
           {%endif%}
@@ -134,6 +136,16 @@
                       <tr>
                       <td>Anmol Malhotra</td>
                       <td>+919911519233</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2"><b>For Queries related to UserId, you may contact our CCs</b></td></tr>
+                      <tr>
+                        <td>Shaurya Sinha</td>
+                        <td>+918757373564</td>
+                      </tr>
+                      <tr>
+                        <td>Anupriya Singpuri</td>
+                        <td>+919570164884</td>
                       </tr>
                      
                   </tbody>

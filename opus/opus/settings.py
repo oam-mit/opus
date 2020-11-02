@@ -152,10 +152,10 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST='smtp.mailgun.org'
+EMAIL_HOST='smtp.zoho.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
 
-EMAIL_HOST_USER='test@omkarmasur.engineer'
-EMAIL_HOST_PASSWORD='10088a38e5f913576856fd7253d53827-65b08458-60a98080'
-DEFAULT_FROM_EMAIL='noreply@omkarmasur.engineer'
+EMAIL_HOST_USER='acumen.techtatva@istemanipal.com'
+EMAIL_HOST_PASSWORD='98BDGhHIrkgI'
+DEFAULT_FROM_EMAIL="Acumen | TechTatva'20 <acumen.techtatva@istemanipal.com>"

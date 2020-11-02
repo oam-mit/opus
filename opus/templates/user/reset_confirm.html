@@ -5,8 +5,10 @@ Confirmation
 {%endblock%}
 
 {%block content%}
+{%if form%}
                 <form class="login100-form validate-form flex-sb flex-w" method="POST">
                     {%csrf_token%}
+                    
                     {{form|crispy}}
 
                     <div class="container-login100-form-btn">
@@ -14,8 +16,20 @@ Confirmation
                             Submit
                         </button>
                     </div>
+                    
 
                 </form>
+                {%else%}
+                <div class="container">
+                    <div class="row">
+                        <div class="text-center alert-danger">
+                            <h4>Token has expired. Please try again</h4>
+                
+                        </div>
+                
+                    </div>
+                </div>
+                {%endif%}
      
 
     <div id="dropDownSelect1"></div>

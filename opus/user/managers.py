@@ -2,7 +2,7 @@ from django.db import models
 
 class UserProfileQueryset(models.QuerySet):
     def getLeaderboard(self):
-        return self.all().order_by('-points').exclude(user__is_staff=True)[:5]
+        return self.all().order_by('-points','last_answered').exclude(user__is_staff=True)[:5]
 
 
 class UserProfileManager(models.Manager):

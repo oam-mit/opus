@@ -54,7 +54,7 @@ class ProfileForm(forms.ModelForm):
         error_messages={'unique':'Registration number already Exists'})
     mob_number=forms.CharField(widget=forms.TextInput(attrs={'class':'col-12'}),label="Mobile Number",min_length=10,max_length=15,required=False)
 
-    userid=forms.CharField(widget=forms.TextInput(attrs={'class':'col-12','placeholder':'eg.1234'}),label="User Id",help_text="<ol><li>User Id, which is issued from the TechTatva portal will be used for validation at the time of prize distribution.</li><li> Please enter a valid userid if you have one. If you do not have one, please leave it blank. You can edit it later too</li></ol>",required=False)
+    userid=forms.CharField(widget=forms.TextInput(attrs={'class':'col-12','placeholder':'eg.1234'}),label="User Id",help_text='''<ol><li>User Id, which is issued from the <a href="https://techtatva.in" style="color:red !important">TechTatva portal (https://techtatva.in)</a> will be used for validation at the time of prize distribution.</li><li> Please enter a valid userid if you have one. If you do not have one, please leave it blank. You can edit it later too</li></ol>''',required=False)
 
     class Meta:
         model=UserProfile

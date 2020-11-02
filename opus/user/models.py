@@ -18,6 +18,7 @@ class UserProfile(models.Model):
     current_aptitude=models.IntegerField(default=1)
     is_ended=models.BooleanField(default=False)
     userid=models.CharField(max_length=15,null=True,blank=True)
+    last_answered=models.DateTimeField(null=True,blank=True)
 
     objects=UserProfileManager()
 

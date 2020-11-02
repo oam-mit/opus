@@ -22,10 +22,7 @@ from user.forms import ProfileUpdateForm,UserUpdateForm
 
 def check_staff(request): #Only non-staff members are allowed to play
     if request.user.is_staff:
-        from django.contrib.auth import logout
-        logout(request)
-        mess.error(request,"Sorry, Staff is not allowed to Play",extra_tags="danger")
-        return HttpResponseRedirect(reverse("user:login"))
+        return HttpResponseRedirect(reverse("admin:index"))
     else:
         return HttpResponseRedirect(reverse("game:index"))
 
@@ -120,6 +117,7 @@ def aptitude(request):
 
         request.user.userprofile.current_aptitude=1
         request.user.userprofile.points+=selected_option.level.points
+        request.user.userprofile.last_answered=timezone.now()
         request.user.userprofile.save()
         return HttpResponseRedirect(reverse('game:index'))
 
@@ -156,7 +154,7 @@ def check_aptitude(request):
     
             request.user.userprofile.current_aptitude=1
             request.user.userprofile.points+=selected_option.level.points
-            
+            request.user.userprofile.last_answered=timezone.now()
         request.user.userprofile.save()
         return HttpResponse("correct")
     

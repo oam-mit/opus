@@ -31,7 +31,7 @@ from django.contrib.auth import views as user_views
 
 urlpatterns = [
     #Admin
-    path('admin/', admin.site.urls),
+    path('anmolmalhotra/', admin.site.urls),
 
     #Index
     path("",include("user.urls")),
