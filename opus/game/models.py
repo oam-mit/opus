@@ -43,7 +43,7 @@ class Story_Options(models.Model):
 class Aptitude_Question(models.Model):
     story=models.ForeignKey(Story_Question,on_delete=models.CASCADE)
     question_number=models.IntegerField(default=1)
-    question=models.CharField(max_length=1000)
+    question=models.TextField(max_length=1000)
     answer=models.CharField(null=True,max_length=1000,blank=True)
     
 

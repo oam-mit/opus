@@ -5,7 +5,16 @@ from PIL import Image
 
 from .managers import UserProfileManager
 
+from django.core.exceptions import ValidationError
+
 # Create your models here.
+
+def check_userid(value):
+    if not value.isdecimal():
+        raise ValidationError(f'{value} is not a valid Userid. Userid is entirely numeric which is obtained from TechTatva website')
+
+
+
 class UserProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     reg_number=models.CharField(unique=True,error_messages={'unique':'Registration number already Exists'},max_length=15)
@@ -17,7 +26,7 @@ class UserProfile(models.Model):
     path=models.IntegerField(default=1)
     current_aptitude=models.IntegerField(default=1)
     is_ended=models.BooleanField(default=False)
-    userid=models.CharField(max_length=15,null=True,blank=True)
+    userid=models.CharField(max_length=15,null=True,blank=True,validators=[check_userid])
     last_answered=models.DateTimeField(null=True,blank=True)
 
     objects=UserProfileManager()

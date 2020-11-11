@@ -26,18 +26,20 @@
 <br>
 <br>
 
+
 <div style="margin: auto; padding: 10px;"> 
 <div class="d-none d-sm-block">    
-<center><h1 class="custom anim">END OF DAY {{day}}</h1></center>
+<center><h1 class="custom typed-words"></h1></center>
 </div>
 <div class="d-sm-none">
-  <center><h1 class="custom2 anim"><b>END OF<br> DAY {{day}}</b></h1></center>
+  <center><h4 class="custom2 anim" style="font-size:medium !important;"><b>END OF<br> DAY {{day}} {%if day == 4%}<br/>Thank you for<br/> participating{%endif%}</b></h4></center>
 </div>
 
   <br>
   <br>
   <br>
 
+{%if day < 4%}
 <h3 class="custom d-none d-sm-block anim">
  <center>STAY TUNED FOR DAY {{day | add:"1"}}</b></center>
 </h3>
@@ -45,6 +47,7 @@
 <h3 class="custom2 d-sm-none anim">
  <center>STAY TUNED<br> FOR DAY {{day | add:"1"}}</center>
 </h3> 
+{%endif%}
 
 </div>
 <br>
@@ -110,5 +113,18 @@ loader.init();
 
 
 </script>
+
+<script src="{%static 'profile/js/typed.js'%}"></script>
+    <script>
+    var typed = new Typed('.typed-words', {
+    strings: ["END OF DAY {{day}} {%if day == 4%}Thank you for participating{%endif%}"],
+    typeSpeed: 80,
+    backSpeed: 80,
+    backDelay: 4000,
+    startDelay: 500,
+    loop: false,
+    showCursor: true,
+    })
+    </script>
 
 {%endblock%}

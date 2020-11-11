@@ -14,6 +14,16 @@
   <link rel="stylesheet" href="{%static 'css/story.css'%}">
   <link rel="icon" type="image/ico" href="{%static 'img/acumen.png'%}" />
   <link rel="stylesheet" href="{%static 'fonts/fontawesome/css/all.css'%}">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-20G4VYS64E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-20G4VYS64E');
+    </script>
+    
+    
 
     {%block other_css%}
     {%endblock%}
@@ -165,9 +175,7 @@ cursor: pointer;     }
     });
     </script>
     
-  <audio autoplay loop>
-    <source src="{%static '.mp3'%}" type="audio/mpeg">
-  </audio>
+  
 <div class="nav navbar navbar-expand-md bg-dark navbar-dark sticky-top">
   <!-- Brand -->
   <a class="navbar-brand" href="#" id="index">HOPELESS OPUS</a>
@@ -216,6 +224,11 @@ cursor: pointer;     }
       <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-toggle="modal" data-target="#Modalcontact" >CONTACT US</a>
       </li>
+      {%block summary%}
+      <li>
+        <a class="nav-link" data-toggle="modal" data-toggle="modal" data-target="#Modalsummary" >STORY SO FAR</a>
+      </li>
+      {%endblock%}
     </ul>
 </div>
 </div>
@@ -337,6 +350,7 @@ cursor: pointer;     }
             <li>POINTS ARE AWARDED ONCE YOU ANSWER THE APTITUDE QUESTIONS ASSOCIATED WITH THE STORY QUESTION, IF ANY</li>
             <br>
             <li>PLEASE UPDATE YOUR USER ID IN CASE YOU HAVEN'T. YOU CAN AVAIL PRIZES ONLY IF YOU HAVE A VALID USER ID. VALIDITY OF THE USER ID WILL BE CHECKED AT THE TIME OF DECLARATION OF WINNERS</li>
+            <li>ANY DECISION TAKEN BY CC OR EVENT HEADS IS FINAL AND BINDING</li>
             </ul>
           </div>
         </div>
@@ -356,6 +370,47 @@ cursor: pointer;     }
           </div>
         </div>
       </div>
+</div>
+
+<div id="Modalsummary" class="modal fade" role="dialog" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h3 class="modal-title">Story so far</h3>
+        <br />
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        Harsh, a 17-year-old boy with a scar on his collarbone that is mystically shaped like an anchor, began his first year at MIT. He has a past from which he wants to move on, and a new city seems like a perfect opportunity. At MIT, he has made two friends – Ronak and Sara. The MIT, Manipal campus is stunning. The Fountain of Prognostication can have you staring at it for hours. On their first day, they had to attend the start of the term feast in food court 2, which followed an introductory program by the most powerful wizard of all time who is also the director of MIT – Professor Omkar. <br/> 
+        {%if user.userprofile.story >= 21 %}
+        One day, the three of them plan to explore the grand MIT library. The information they run into on their first visit is about a wizard and an alumnus of MIT, who, due to the bad experiences and tortures, reached out to dark magic for revenge, which ultimately got him expelled. His career was destroyed, and so was his pride. Since then, he had always considered all MITians as enemies. However, Yaksha has not been seen since the first wizarding battle.<br/>
+        {%endif%}  
+        {%if user.userprofile.story >= 31 %}
+        Harsh, Ronak and Sara have become good friends with Bhakti, an ex-professor banned from performing magic. She is incredibly motherly and very kind. Their visit to Bhakti's cottage, one day, revealed information about Harsh's deceased parents. He found out that they had died fighting Yaksha. They also got to know about Yaksha's fear of death that led to him committing the ultimate evil act – creating the Aatmastras. <br/>
+        {%endif%}
+
+        {%if user.userprofile.story >= 37 %}
+        Harsh has been feeling extremely distressed lately. He decides to talk to professor Omkar about it, who tells him all about his history. He finds out that Yaksha is his Grandfather, who cursed him (which explains the collarbone scar) only because he was born out of wedlock. Yaksha had also killed his parents. All this information gets a little overwhelming for Harsh. However, he decides that he needs to avenge his parent's death.  <br/>
+        {%endif%}
+
+        {%if user.userprofile.story >= 44 %}
+        The three of them have begun their search of the Aatmastras, and they decide to start in the library. They made plans to sneak past the librarian and get inside the forbidden section. In the library, after searching for an entire night, they found information on a 'Crown of Manipal' in a suspicious book whose pages had been torn off. To find out more about the crown, they must dig deeper.  <br/>
+        {%endif%}
+
+        {%if user.userprofile.story >= 58 %}
+        The next day, Sara spends all day in the library searching for information on the crown but in vain. However, she comes across an enchanted diary that writes back when someone writes in it. In a conversation with the journal, they find out more information about the crown. However, the diary is a powerful piece of dark magic, and hence they decide to destroy it. The destruction is not easy. Ronak chooses to prepare a potion that would take about a month to brew but will successfully destroy the diary. When the potion was finally ready, the diary was successfully destroyed. They later find out that they had destroyed an Aatmastra.  One down, three more to go…  <br/>
+        {%endif%}
+       
+        {%if user.userprofile.story >= 72 %}
+        Bhakti is shocked and wants to stop them from continuing the adventure any further, but it was too late. Instead, she decides to help them. She gives them a map to sneak out at night without getting caught by guards or professors. When they explored the map one night, they ended up in the trophy display room in AB1. One of the awards kept there belonged to Yaksha and was suspiciously fixed to its shelf with a spell's help. After getting rid of the spell and removing the award from the shelf, they decided to ask Bhakti who told them that the award was the first one that Yaksha had won at MIT. It was very close to his heart. It quite fitted the description of an object someone might choose to keep a part of their souls except for the fact that it was kept in plain sight. The primary purpose for that must have been to not draw attention to it, but destiny had other plans, and the award, i.e., another part of Yaksha's soul, was destroyed. And just like that, dark times returned…  <br/>
+        {%endif%}
+
+        {%if user.userprofile.story >= 81 %}
+        Word has spread that Yaksha is trying to get back into power using the 'Elixir of Life,' which was being prepared by one of his followers. Aurors and the older wizards were shooting out spells to cast a protection charm, and preparations were going on at the Student Plaza. One night, the protection charm suddenly started to dissolve, and black hooded figures shouted out spells towards the Student Plaza.<br/>
+        {%endif%}
+      </div>
+    </div>
+  </div>
 </div>  
 <div id="Modalleaderboard" class="modal fade bd-example-modal-lg" role="dialog"  data-keyboard="false">
       <div class="modal-dialog">
@@ -394,7 +449,7 @@ cursor: pointer;     }
                           {%for topper in toppers%}
                           <tr>
                           <td>{{forloop.counter}}</td>
-                          <td><a href="{%url 'profiles:index' topper.reg_number %}" target="_blank">{{topper.reg_number}}</a></td>
+                          <td><a href="{%url 'profiles:index' topper.reg_number %}" target="_blank">{{topper.user.username}}</a></td>
                           <td>{{topper.points}}</td>
                          </tr>
                           {%endfor%}
@@ -500,7 +555,7 @@ cursor: pointer;     }
     <script src="{%static 'background.js'%}"></script>
     {%endblock%}
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  <script src="{%static 'jquery.js'%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="{%static 'js/ajax_funs.js'%}"></script>

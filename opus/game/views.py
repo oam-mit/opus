@@ -79,6 +79,13 @@ def check_story(request,option):
     if request.user.userprofile.is_story is False: #User is not on story question
         return HttpResponseRedirect(reverse("game:aptitude")) #Redirect to aptitude
 
+    status=check_day_end(request.user.userprofile.story)      
+    if status['status']!=STAY:
+            if status['day']>0:
+                return redirect(reverse('game:day_ending',args=[status['day']]))
+            else:
+                return redirect(reverse('game:welcome'))
+
     question_set=Story_Options.objects.filter(question__question_number=request.user.userprofile.story)
 
     if option >question_set.count() or option <0: #Invalid response
@@ -104,6 +111,9 @@ def aptitude(request):
     
     if request.user.userprofile.is_story is True: #User is on story question
         return HttpResponseRedirect(reverse("game:index"))
+
+    if check_day_end(request.user.userprofile.story)['day']==4:
+        return redirect(reverse('game:day_ending',args=[4]))
 
     try:
         question=Aptitude_Question.objects.get(story__question_number=request.user.userprofile.story,question_number=request.user.userprofile.current_aptitude) #Get the current aptitude question from the story question he is on
@@ -169,6 +179,8 @@ def day_ending(request,day):
     status=check_day_end(request.user.userprofile.story)
     if status['status']!=REDIRECT or status['day']!=day:
         return redirect(reverse('game:index'))
+    if day==4:
+        return render(request,'game/day_ending.html',context={'day':day})
     table = UserProfile.objects.getLeaderboard()
     context={
         'toppers':table,

@@ -18,7 +18,7 @@ def index(request,reg_number):
         raise Http404()
 
 
-    rank=get_rank(request.user.userprofile)
+    rank=get_rank(profile)
 
     context={
         'profile':profile,

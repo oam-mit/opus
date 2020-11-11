@@ -15,7 +15,7 @@ class GameAdmin(admin.ModelAdmin):
     list_display=['question_number','question']
     list_display_links=['question_number']
     list_filter=['question_number']
-    search_fields=['question_number']
+    search_fields=['question_number','story_options__on_chosen']
     ordering=['question_number']
 
 
