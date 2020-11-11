@@ -2,9 +2,9 @@
 Hopeless Opus is an online event organised by Acumen, ISTE Manipal in the national level technical festival TechTatva.
 Hopeless Opus is a choice-based story based game, where people are supposed to answer aptitude questions to advance further in the story. The choice a person makes in the story based question decides the number of aptitude questions the player answers after that, and also decides the path on which the user goes on.
 # Starting the development server
-**Step 1:**  Initialize the virtual environment
+**Step 1:**  Initialize the virtual environment and activate it
 
-`python -m venv env`
+`python -m venv env` `source env/bin/activate` (for windows replace bin by Scripts)
 
 **Step 2:** Install the dependencies
 
