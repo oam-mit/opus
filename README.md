@@ -17,7 +17,7 @@ Hopeless Opus is a choice-based story based game, where people are supposed to a
 
 **Note that if you are using a different database than the SQLite database, you need to change the database setting in settings.py and run the migrations**
 
-#Database Schema for important tables
+# Database Schema for important tables
 #### Levels
 |  Name | Type   | Description |
 | ------------ | ------------ |------------ |
