@@ -2,12 +2,12 @@
 Hopeless Opus is an online event organised by Acumen, ISTE Manipal in the national level technical festival TechTatva.
 Hopeless Opus is a choice-based story based game, where people are supposed to answer aptitude questions to advance further in the story. The choice a person makes in the story based question decides the number of aptitude questions the player answers after that, and also decides the path on which the user goes on.
 # Starting the development server
-**Step 1: **  Initialize the virtual environment 
+**Step 1: **  Initialize the virtual environment
 `python -m venv env`
-**Step 2: ** Install the dependencies 
+**Step 2: ** Install the dependencies
 `pip install -r requirments.txt` 
 (Make sure that the working directory is the same as requirements.txt file)
-**Step3 :** Start the development server 
+**Step3 :** Start the development server
 `python manage.py runserver`
 **Note that if you are using a different database than the SQLite database, you need to change the database setting in settings.py and run the migrations**
 #Database Schema for important tables
