@@ -14,7 +14,7 @@ boltiot==1.11.2
 Brlapi==0.6.6
 cachetools==3.1.1
 camelcase==0.2
-certifi==2019.6.16
+certifi==2022.12.7
 chardet==3.0.4
 chrome-gnome-shell==0.0.0
 click==6.7
