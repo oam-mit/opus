@@ -23,7 +23,7 @@ Hopeless Opus is a choice-based story based game, where people are supposed to a
 | ------------ | ------------ |------------ |
 | level  | Integer Field  | Represents the maximum aptitude questions one has to answer on choosing this. This should be unique.|
 |  description | Character field  | One word description such as good, medium, bad|
-|  points | Integer field  |  Maximum points on gets for choosing this path|
+|  points | Integer field  |  Maximum points one gets for choosing this path|
 
 #### Story Questions
 |  Name | Type   | Description |
@@ -40,7 +40,7 @@ Hopeless Opus is a choice-based story based game, where people are supposed to a
 | on_chosen  | Integer Field   | The question number to which a user goes to when he chooses this option |
 
 # Important Files
-1. **utils.py  within game app :** This has helper functions to check for end of day and also to get rank of a user.  The **DAYS **Dictionary is designed in such a way that it is self-explanatory. Also,** BRANCHES** is a list of all brached questions. The DAYS dictionary has a key called **branches**, which can be used for keeping a record. It is not used anywhere in evaluating anything.
+1. **utils.py  within game app :** This has helper functions to check for end of day and also to get rank of a user.  The **DAYS **Dictionary is designed in such a way that it is self-explanatory. Also,** BRANCHES** is a list of all branched questions. The DAYS dictionary has a key called **branches**, which can be used for keeping a record. It is not used anywhere in evaluating anything.
 2. **send_userid_mail.py within user app**:  This is a Django management command, which is used for sending mails to all participants who haven't updated their UserIds yet. To use this, we need to run the command `python manage.py send_userid_mail`. To know more about custom management commands, [click here](https://docs.djangoproject.com/en/3.1/howto/custom-management-commands/ "click here") or [here](https://simpleisbetterthancomplex.com/tutorial/2018/08/27/how-to-create-custom-django-management-commands.html "here")
 
 
