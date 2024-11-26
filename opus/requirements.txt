@@ -26,6 +26,6 @@ requests==2.22.0
 rsa==4.0
 six==1.14.0
 sqlparse==0.3.0
-urllib3==1.25.8
+urllib3==1.26.5
 wrapt==1.11.2
 django-rest-framework==0.1.0
